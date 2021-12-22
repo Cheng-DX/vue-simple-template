@@ -61,7 +61,7 @@ export default {
 
       let xLabel = val.xAxis[0].name;
       if (xLabel === "" || xLabel === undefined) {
-        xLabel = "时间";
+        xLabel = "x";
       }
       this.labels.push({ prop: "-1", label: xLabel });
       for (let i = 0; i < val.series.length; i++) {

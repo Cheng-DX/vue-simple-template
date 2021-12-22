@@ -70,6 +70,11 @@ import router from './router'
 // the vuex store
 import store from './vuex/store.js'
 
+// heighlight.js
+import VueHighlightJS from 'vue-highlightjs'
+import './assets/css/atom-one-dark.css'
+Vue.use(VueHighlightJS)
+
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),

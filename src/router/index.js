@@ -28,17 +28,24 @@ const routes = [{
     name: '个人中心',
     component: Layout,
     meta: {
-      notLoad: true
+      notLoad: false,
+      icon: 'el-icon-user',
     },
     children: [{
         path: 'me',
         name: '我',
-        component: () => import('../views/user/Me.vue')
+        component: () => import('../views/user/Me.vue'),
+        meta:{
+          icon: 'el-icon-medal-1'
+        }
       },
       {
         path: 'settings',
         name: '设置',
-        component: () => import('../views/user/Settings.vue')
+        component: () => import('../views/user/Settings.vue'),
+        meta: {
+          icon: 'el-icon-setting',
+        }
       }
     ],
   },
@@ -54,6 +61,7 @@ const routes = [{
       path: 'submenu1',
       name: '主页子菜单1',
       component: () => import('../views/home/submenus/submenu1/index.vue'),
+      redirect: '/home/submenu1/test',
       meta: {
         icon: 'el-icon-sunset'
       },

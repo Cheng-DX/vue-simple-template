@@ -1,6 +1,6 @@
 <template>
-  <div class="root">
-    <el-breadcrumb separator="/" class="breadcrumb">
+  <div class="breadcrumb-root">
+    <el-breadcrumb  class="breadcrumb">
       <el-breadcrumb-item
         v-for="(item, index) in breadList"
         :key="index"
@@ -13,9 +13,6 @@
 
 <script>
 export default {
-  data() {
-    return {};
-  },
   computed: {
     breadList() {
       return this.$route.matched;
@@ -25,7 +22,7 @@ export default {
 </script>
 
 <style scoped>
-.root {
+.breadcrumb-root {
   display: flex;
   vertical-align: middle;
   background: transparent;

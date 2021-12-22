@@ -20,10 +20,11 @@
   border-radius: 10px;
   margin: 20px;
   padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 .title {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 17px;
+  font-weight: 300;
   margin-bottom: 10px;
   height: 20%;
 }

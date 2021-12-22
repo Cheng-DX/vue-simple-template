@@ -34,13 +34,15 @@ export default {
         {
           name: "me",
           method: () => {
-            this.$router.push("/profile/me");
+            if (this.$route != "/profile/me") 
+              this.$router.push("/profile/me");
           },
         },
         {
           name: "settings",
           method: () => {
-            this.$router.push("/profile/settings");
+            if (this.$route != "/profile/me")
+              this.$router.push("/profile/settings");
           },
         },
         {

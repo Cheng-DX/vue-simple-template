@@ -5,32 +5,41 @@
     </el-aside>
     <el-container>
       <el-header height="auto">
-        <div class="header-top">
-          <div class="icon">
-            <el-button
-              class="button"
-              :icon="menuIcon"
-              @click="collapse = !collapse"
-            />
+        <el-collapse-transition>
+          <div class="header-top" v-show="breadcrumbVisible">
+            <div class="icon">
+              <el-button
+                class="button"
+                :icon="menuIcon"
+                @click="collapse = !collapse"
+              />
+            </div>
+            <breadcrumb />
+            <toolbar />
           </div>
-          <breadcrumb />
-          <toolbar />
-        </div>
-        <div class="header-bottom" v-show="routerTagVisible">
-          <el-tag
-            v-for="route in catchedRoutes"
-            :key="route.path"
-            type="success"
-            :closable="routerTagClosable"
-            @close="removeRoute(route)"
-            style="margin-right: 10px"
-          >
-            <router-link :to="route.path" class="link-tag">
-              <i :class="routeIcon(route)"/>
-              {{ route.name }}
-            </router-link>
-          </el-tag>
-        </div>
+        </el-collapse-transition>
+
+        <el-collapse-transition>
+          <div class="header-bottom" v-show="routerTagVisible">
+            <el-tag
+              v-for="item in catchedRoutes"
+              :key="item.path"
+              type="success"
+              :closable="routerTagClosable"
+              @close="removeRoute(item)"
+              :style="{
+                marginRight: '10px',
+                backgroundColor: routerTagColor,
+                borderColor: routerTagColor,
+              }"
+            >
+              <router-link :to="item.path" class="link-tag">
+                <i :class="item.icon" />
+                {{ item.name }}
+              </router-link>
+            </el-tag>
+          </div>
+        </el-collapse-transition>
       </el-header>
       <el-main class="main">
         <transition :name="switchType">
@@ -78,21 +87,24 @@ export default {
     catchedRoutes() {
       return this.$store.state.catchedRoutes;
     },
-    routerTagVisible(){
-      return this.$store.state.routerTagVisible;
+    routerTagVisible() {
+      return (
+        this.$store.state.routerTagVisible &&
+        (this.$store.state.catchedRoutes.length > 0 ||
+          !this.$store.state.notShownWhenEmpty)
+      );
     },
-    routerTagClosable(){
+    routerTagClosable() {
       return this.$store.state.routerTagClosable;
+    },
+    routerTagColor() {
+      return this.$store.state.routerTagColor;
+    },
+    breadcrumbVisible() {
+      return this.$store.state.breadcrumbVisible;
     },
   },
   methods: {
-    routeIcon(route) {
-      if (route.meta != undefined && route.meta.icon != undefined) {
-        return route.meta.icon;
-      } else {
-        return "el-icon-document";
-      }
-    },
     removeRoute(route) {
       this.$store.commit("removeRoute", route);
     },
@@ -108,12 +120,13 @@ export default {
 
 .header-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 .header-bottom {
   height: 33px;
   padding-bottom: 5px;
+  margin-top: 5px;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -128,7 +141,7 @@ export default {
   font-size: 13px;
   text-align: center;
   text-decoration: auto;
-  color: #0b857cc4;
+  color: #0b857d8e;
 }
 .icon {
   display: flex;
