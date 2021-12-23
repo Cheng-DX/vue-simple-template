@@ -1,7 +1,7 @@
 <template>
   <el-card style="margin-bottom: 20px">
     <div slot="header" class="clearfix">
-      <span>About me</span>
+      <h3>About me</h3>
     </div>
 
     <div class="box-center">

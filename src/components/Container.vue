@@ -62,6 +62,14 @@ export default {
       collapse: false,
     };
   },
+  created() {
+    this.collapse = this.$store.state.collapse;
+  },
+  watch: {
+    collapse(val) {
+      this.$store.commit("setCollapse", val);
+    },
+  },
   computed: {
     minWidth() {
       if (this.collapse) {

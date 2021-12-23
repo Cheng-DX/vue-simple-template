@@ -19,6 +19,7 @@ const store = new Vuex.Store({
     routerTagColor: '#fff',
     notShownWhenEmpty: true,
     breadcrumbVisible: true,
+    collapse: false,
   },
   mutations: {
     setSwitchType(state, type) {
@@ -102,6 +103,9 @@ const store = new Vuex.Store({
     setBreadcrumbVisible(state, visible) {
       state.breadcrumbVisible = visible
     },
+    setCollapse(state, collapse) {
+      state.collapse = collapse
+    }
   }
 });
 

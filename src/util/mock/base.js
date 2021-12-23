@@ -91,7 +91,7 @@ function randomCharts() {
   }
   for (let i = 0; i < fastModeChartsLength; i++) {
     charts.push({
-      'id|+1': 1,
+      id: '@id',
       fastMode: true,
       xData: randomXData(randomSeeds[i]),
       yData: randomYData(randomSeeds[i]),
@@ -172,7 +172,7 @@ function randomCharts() {
   };
   for (let i = 0; i < optionChartsLength; i++) {
     charts.push({
-      'id|+1': 1,
+      id :'@id',
       fastMode: false,
       option: option
     })

@@ -192,6 +192,7 @@ export default {
 .root {
   border-radius: 10px;
   background: rgba(243, 240, 240, 0.548);
+  height: 100%;
 }
 .col {
   border-radius: 5px;

@@ -1,13 +1,18 @@
 <template>
   <div class="root">
     <el-carousel
-      :interval="4000"
-      type="card"
+      :interval="3000"
       height="200px"
-      style="width: 60vw"
+      indicator-position="none"
+      direction="vertical"
+      class="carousel"
     >
-      <el-carousel-item v-for="item in 6" :key="item">
-        <h3 class="medium">{{ item }}</h3>
+      <el-carousel-item v-for="img in imgs" :key="img.id">
+        <el-image
+          style="height: 100%; width: 100%"
+          fit="contain"
+          :src="img.src"
+        />
       </el-carousel-item>
     </el-carousel>
     <div class="bottom-panel">
@@ -17,7 +22,18 @@
       <div class="charts">
         <el-card>
           <template #header>
-            <span>DCHART 随机图表</span>
+            <div class="charts-head">
+              <h3>DCHART 随机图表</h3>
+              <el-tag type="primary" style="margin-inline: 20px">
+                <el-button
+                  icon="el-icon-paperclip"
+                  type="text"
+                  size="small"
+                  @click="openDChartGithubAddress"
+                  >组件地址</el-button
+                >
+              </el-tag>
+            </div>
           </template>
           <div v-for="chart in charts" :key="chart.id" class="chart-sample">
             <div class="chart-panel">
@@ -51,17 +67,29 @@ export default {
         name: "Cheng-DX",
       },
       charts: [],
+      imgs: [],
     };
   },
   created() {
     this.$axios.get("/charts").then((res) => {
-      console.log(res.data)
       this.charts = res.data;
     });
+    let randomMount = Math.floor(Math.random() * 90) + 10;
+    for (let i = 0; i < randomMount; i++) {
+      this.imgs.push({
+        id: i,
+        src: `https://picsum.photos/id/${Math.floor(
+          Math.random() * 1000
+        )}/2000/300`,
+      });
+    }
   },
   methods: {
     imageSrc(src) {
       return require(`../../assets/codeImages/${src}`);
+    },
+    openDChartGithubAddress() {
+      window.open("https://github.com/Cheng-DX/my-vue-echarts");
     },
   },
 };
@@ -87,12 +115,17 @@ export default {
   width: 75%;
   margin-inline: 20px;
 }
+.charts-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .chart-sample {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 2px solid rgb(158, 155, 155);
+  border: 2px solid #d4cecedc;
   border-radius: 10px;
   margin-block: 10px;
   width: 100%;
@@ -109,25 +142,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.code-image {
-  height: 70%;
-}
-.code-block.markdown-toolbars {
-  display: none;
-}
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 200px;
-  margin: 0;
-}
 
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
+.carousel.el-carousel {
+  width: 100%;
+  margin-bottom: 20px;
 }
 </style>
