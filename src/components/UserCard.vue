@@ -14,27 +14,20 @@
           <span>Github</span>
         </div>
         <div class="user-bio-section-body">
-          <a class="text-muted" href="http://www.github.com/Cheng-DX">Cheng-DX</a>
+          <a class="text-muted" href="http://www.github.com/Cheng-DX"
+            >Cheng-DX</a
+          >
         </div>
       </div>
 
       <div class="user-bio-section">
         <div class="user-bio-section-body">
-          <div class="progress-item">
-            <span>Vue</span>
-            <el-progress :percentage="30" />
-          </div>
-          <div class="progress-item">
-            <span>JavaScript</span>
-            <el-progress :percentage="6" />
-          </div>
-          <div class="progress-item">
-            <span>Css</span>
-            <el-progress :percentage="5" />
-          </div>
-          <div class="progress-item">
-            <span>ESLint</span>
-            <el-progress :percentage="0" status="warning" />
+          <div v-for="skill in skills" :key="skill.id" class="progress-item">
+            <span>{{ skill.name }}</span>
+            <el-progress
+              :percentage="skill.score"
+              :color="skill.color"
+            />
           </div>
         </div>
       </div>
@@ -56,6 +49,61 @@ export default {
         };
       },
     },
+  },
+  data() {
+    return {
+      skills: [
+        {
+          id: 1,
+          name: "vue",
+          score: 30,
+          status: "success",
+          color: "#409EFF",
+        },
+        {
+          id: 2,
+          name: "vuex",
+          score: 10,
+          status: "warning",
+          color: "#409EFF",
+        },
+        {
+          id: 3,
+          name: "vue-router",
+          score: 30,
+          status: "success",
+          color: "#409EFF",
+        },
+        {
+          id: 4,
+          name: "vite",
+          score: 20,
+          status: "success",
+          color: "#409EFF",
+        },
+        {
+          id: 5,
+          name: "element-ui",
+          score: 60,
+          status: "success",
+          color: "#409EFF",
+        },
+        {
+          id: 6,
+          name: "vue-echarts",
+          score: 50,
+          status: "success",
+          color: "#409EFF",
+        },
+        {
+          id: 7,
+          name: "element-plus",
+          score: 1,
+          status: "success",
+          color: "#409EFF",
+        }
+      ],
+    };
   },
 };
 </script>

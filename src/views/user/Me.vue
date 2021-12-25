@@ -3,8 +3,6 @@
     <el-carousel
       :interval="3000"
       height="200px"
-      indicator-position="none"
-      direction="vertical"
       class="carousel"
     >
       <el-carousel-item v-for="img in imgs" :key="img.id">
@@ -74,7 +72,7 @@ export default {
     this.$axios.get("/charts").then((res) => {
       this.charts = res.data;
     });
-    let randomMount = Math.floor(Math.random() * 90) + 10;
+    let randomMount = Math.floor(Math.random() * 10) + 5;
     for (let i = 0; i < randomMount; i++) {
       this.imgs.push({
         id: i,
