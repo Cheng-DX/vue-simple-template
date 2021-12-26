@@ -20,6 +20,7 @@ const store = new Vuex.Store({
     notShownWhenEmpty: true,
     breadcrumbVisible: true,
     collapse: false,
+    permission: 'admin'
   },
   mutations: {
     setSwitchType(state, type) {

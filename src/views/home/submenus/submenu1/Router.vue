@@ -44,7 +44,6 @@ export default {
             <el-button
               type="text"
               on-click={() => {
-                console.log(data.path);
                 this.$router.push(data.path);
               }}
               style="margin-left: auto"

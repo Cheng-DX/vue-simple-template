@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <el-row :gutter="35">
+    <el-row style="height: 100%" :gutter="35">
       <el-col :span="7" class="col">
         <div style="height: auto">
           <setting-card>
@@ -116,7 +116,9 @@
           </setting-card>
         </div>
       </el-col>
-      <el-col :span="7" class="col">s</el-col>
+      <el-col :span="7" class="col">
+        
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -192,7 +194,6 @@ export default {
 .root {
   border-radius: 10px;
   background: rgba(243, 240, 240, 0.548);
-  height: 100%;
 }
 .col {
   border-radius: 5px;

@@ -6,7 +6,12 @@ Vue.use(VueRouter)
 
 const Layout = () => import('../components/Container.vue')
 
-const routes = [{
+// permission
+const user = 'user'
+const handler = 'handler'
+
+// 完整路由结构
+const allRoutes = [{
     path: '/login',
     name: '登录',
     meta: {
@@ -35,7 +40,7 @@ const routes = [{
         path: 'me',
         name: '我',
         component: () => import('../views/user/Me.vue'),
-        meta:{
+        meta: {
           icon: 'el-icon-medal-1'
         }
       },
@@ -45,7 +50,7 @@ const routes = [{
         component: () => import('../views/user/Settings.vue'),
         meta: {
           icon: 'el-icon-setting',
-        }
+        },
       }
     ],
   },
@@ -63,29 +68,32 @@ const routes = [{
       component: () => import('../views/home/submenus/submenu1/index.vue'),
       redirect: '/home/submenu1/test',
       meta: {
-        icon: 'el-icon-sunset'
+        icon: 'el-icon-sunset',
+        permissions: [user, handler]
       },
       children: [{
-        path: 'test',
-        name: 'temp',
-        component: () => import('../views/home/submenus/submenu1/Test.vue'),
+        path: 'router',
+        name: '路由结构',
+        component: () => import('../views/home/submenus/submenu1/Router.vue'),
         meta: {
           icon: 'el-icon-heavy-rain'
         }
       }]
     }, {
       path: 'submenu2',
-      name: '随机name',
+      name: '随机name(USER可见)',
       component: () => import('../views/home/submenus/Submenu2.vue'),
       meta: {
-        icon: 'el-icon-sunrise'
+        icon: 'el-icon-sunrise',
+        permissions: [user]
       }
     }, {
       path: 'submenu3',
-      name: '随机address',
+      name: '随机address(HANDLER可见)',
       component: () => import('../views/home/submenus/Submenu3.vue'),
       meta: {
-        icon: 'el-icon-sunrise-1'
+        icon: 'el-icon-sunrise-1',
+        permissions: [handler]
       }
     }]
   }, {
@@ -99,11 +107,28 @@ const routes = [{
   }
 ]
 
+let permission = store.state.permission;
+
+function maintainRouter(permission, route) {
+  if (route.meta && route.meta.permissions) {
+    return route.meta.permissions.includes(permission) ? true : false
+  } else {
+    return true
+  }
+}
+
+function addRoutesByPermission(permission) {
+  let routes = [];
+  allRoutes.forEach(route => {
+    if (maintainRouter(permission, route)) {
+      routes.push(route)
+    }
+  })
+}
 const router = new VueRouter({
   mode: 'history',
-  routes
+  routes: allRoutes
 })
-
 router.beforeEach((to, from, next) => {
   store.commit('addRoute', to);
   if (to.name) {
