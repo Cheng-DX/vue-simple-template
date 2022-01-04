@@ -69,7 +69,26 @@ export default {
   },
   methods: {
     handleLogin() {
-      this.$router.push("/");
+      let username = this.loginForm.username;
+      let password = this.loginForm.password;
+      
+      if (username === "" || password === "") {
+        this.$message({
+          message: "Username or password cannot be empty",
+          type: "warning",
+        });
+      } else {
+        if (username === "user" && password === "user") {
+          
+        } else if (username === "handler" && password === "handler") {
+          
+        } else {
+          this.$message({
+            message: "Username or password is incorrect",
+            type: "warning",
+          });
+        }
+      }
     },
   },
 };

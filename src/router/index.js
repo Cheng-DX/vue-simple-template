@@ -68,8 +68,7 @@ const allRoutes = [{
       component: () => import('../views/home/submenus/submenu1/index.vue'),
       redirect: '/home/submenu1/test',
       meta: {
-        icon: 'el-icon-sunset',
-        permissions: [user, handler]
+        icon: 'el-icon-sunset'
       },
       children: [{
         path: 'router',
@@ -81,7 +80,7 @@ const allRoutes = [{
       }]
     }, {
       path: 'submenu2',
-      name: '随机name(USER可见)',
+      name: '随机name',
       component: () => import('../views/home/submenus/Submenu2.vue'),
       meta: {
         icon: 'el-icon-sunrise',
@@ -89,7 +88,7 @@ const allRoutes = [{
       }
     }, {
       path: 'submenu3',
-      name: '随机address(HANDLER可见)',
+      name: '随机address',
       component: () => import('../views/home/submenus/Submenu3.vue'),
       meta: {
         icon: 'el-icon-sunrise-1',
@@ -107,8 +106,6 @@ const allRoutes = [{
   }
 ]
 
-let permission = store.state.permission;
-
 function maintainRouter(permission, route) {
   if (route.meta && route.meta.permissions) {
     return route.meta.permissions.includes(permission) ? true : false
@@ -117,18 +114,38 @@ function maintainRouter(permission, route) {
   }
 }
 
-function addRoutesByPermission(permission) {
-  let routes = [];
+function deepFilter(allRoutes, permission) {
+  let routes = []
   allRoutes.forEach(route => {
-    if (maintainRouter(permission, route)) {
-      routes.push(route)
+    if (route.children) {
+      let children = deepFilter(route.children, permission)
+      if (children.length > 0) {
+        route.children = children
+        routes.push(route)
+      }
+    } else {
+      if (maintainRouter(permission, route)) {
+        routes.push(route)
+      }
     }
   })
+  return routes
 }
+
+let permission = 'admin';
+
+let routes = []
+if (permission === 'admin') {
+  routes = allRoutes;
+} else {
+  routes = deepFilter(allRoutes, permission);
+}
+
 const router = new VueRouter({
   mode: 'history',
-  routes: allRoutes
+  routes
 })
+
 router.beforeEach((to, from, next) => {
   store.commit('addRoute', to);
   if (to.name) {
