@@ -9,21 +9,21 @@ function repeat(size, template) {
 }
 
 Mock.mock(
-  '/test', repeat(10, {
+  '/api/test', repeat(10, {
     'id|+1': 1,
     'data': '@name',
   })
 );
 
 Mock.mock(
-  '/address', repeat(10, {
+  '/api/address', repeat(10, {
     'id|+1': 1,
     'name': '@county(true)',
   })
 )
 
 Mock.mock(
-  '/switchTypeList', [{
+  '/api/switchTypeList', [{
     label: 'None',
     value: '无动画'
   }, {
@@ -45,7 +45,7 @@ Mock.mock(
 )
 
 Mock.mock(
-  '/routerTagCloseEventList', [{
+  '/api/routerTagCloseEventList', [{
       value: 'backToFirst',
       label: '返回至第一个Tag',
     },
@@ -180,4 +180,4 @@ function randomCharts() {
   return charts;
 }
 
-Mock.mock('/charts', randomCharts())
+Mock.mock('/api/charts', randomCharts())

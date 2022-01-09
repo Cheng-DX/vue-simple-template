@@ -2,9 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../vuex/store.js'
 
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+NProgress.configure({
+  showSpinner: false
+})
+
 Vue.use(VueRouter)
 
-const Layout = () => import('../components/Container.vue')
+const Layout = () => import('components/Container.vue')
 
 // permission
 const user = 'user'
@@ -77,6 +83,13 @@ const allRoutes = [{
         meta: {
           icon: 'el-icon-heavy-rain'
         }
+      },{
+        path: 'test',
+        name: '测试',
+        component: () => import('../views/home/submenus/submenu1/FilterDataTable.vue'),
+        meta: {
+          icon: 'el-icon-s-data'
+        }
       }]
     }, {
       path: 'submenu2',
@@ -95,7 +108,8 @@ const allRoutes = [{
         permissions: [handler]
       }
     }]
-  }, {
+  },
+  {
     path: '*',
     name: '空',
     meta: {
@@ -148,10 +162,12 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   store.commit('addRoute', to);
+  NProgress.start()
   if (to.name) {
     document.title = to.name;
   }
   next();
+  NProgress.done();
 })
 
 export default router

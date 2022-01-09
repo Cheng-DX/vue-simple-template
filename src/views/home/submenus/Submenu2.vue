@@ -1,6 +1,8 @@
 <template>
   <div>
-    <el-card class="card" v-for="sub in item" :key="sub.id">{{ sub.data }}</el-card>
+    <el-card class="card" v-for="sub in item" :key="sub.id">{{
+      sub.data
+    }}</el-card>
   </div>
 </template>
 
@@ -13,7 +15,7 @@ export default {
   },
   created() {
     this.$axios.get("/test").then((res) => {
-      this.item= res.data;
+      this.item = res.data;
     });
   },
   computed: {

@@ -40,17 +40,6 @@ export default {
             <span>{data.name}</span>
             <span>{notLoad ? "  (该页面不会被加载)" : ""}</span>
           </span>
-          <span>
-            <el-button
-              type="text"
-              on-click={() => {
-                this.$router.push(data.path);
-              }}
-              style="margin-left: auto"
-            >
-              跳转
-            </el-button>
-          </span>
         </span>
       );
     },

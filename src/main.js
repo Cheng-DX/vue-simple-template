@@ -8,6 +8,7 @@ Vue.use(ElementUI)
 
 // axios
 import axios from 'axios'
+axios.defaults.baseURL = '/api';
 Vue.prototype.$axios = axios
 
 // vue-echarts
@@ -61,8 +62,9 @@ use([
 import dcharts from './util/dEcharts/dcharts.vue'
 Vue.component('d-chart', dcharts)
 
-// the mock
-import './util/mock/base.js'
+// mock
+import '@/util/mock/base.js'
+import '@/util/mock/test.js'
 
 // the router
 import router from './router'

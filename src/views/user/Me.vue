@@ -1,10 +1,6 @@
 <template>
   <div class="root">
-    <el-carousel
-      :interval="3000"
-      height="200px"
-      class="carousel"
-    >
+    <el-carousel :interval="3000" height="200px" class="carousel">
       <el-carousel-item v-for="img in imgs" :key="img.id">
         <el-image
           style="height: 100%; width: 100%"
@@ -54,8 +50,8 @@
 </template>
 
 <script>
-import SettingCard from "../../components/SettingCard.vue";
-import UserCard from "../../components/UserCard.vue";
+import SettingCard from "components/SettingCard.vue";
+import UserCard from "components/UserCard.vue";
 export default {
   name: "Me",
   components: { UserCard, SettingCard },
@@ -69,6 +65,9 @@ export default {
     };
   },
   created() {
+    this.$axios.get("/demo/test1").then((res) => {
+      this.$message.success(res.data);
+    });
     this.$axios.get("/charts").then((res) => {
       this.charts = res.data;
     });
@@ -83,9 +82,6 @@ export default {
     }
   },
   methods: {
-    imageSrc(src) {
-      return require(`../../assets/codeImages/${src}`);
-    },
     openDChartGithubAddress() {
       window.open("https://github.com/Cheng-DX/my-vue-echarts");
     },

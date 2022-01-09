@@ -22,6 +22,10 @@
   padding: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
+.setting-card:hover {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  transition: 2s
+}
 .title {
   font-size: 17px;
   font-weight: 300;
