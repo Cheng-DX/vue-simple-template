@@ -16,50 +16,10 @@ import VueECharts from 'vue-echarts'
 Vue.component('v-chart', VueECharts)
 
 // echarts按需导入
-import {
-  use
-} from 'echarts/core'
-
-import {
-  CanvasRenderer
-} from 'echarts/renderers'
-import {
-  BarChart,
-  LineChart,
-  PieChart,
-  PictorialBarChart,
-} from 'echarts/charts'
-import {
-  GridComponent,
-  TooltipComponent,
-  LegendComponent,
-  TitleComponent,
-  ToolboxComponent,
-  DataZoomComponent,
-  MarkLineComponent,
-  MarkPointComponent,
-  LegendScrollComponent,
-} from 'echarts/components'
-
-use([
-  CanvasRenderer,
-  BarChart,
-  LineChart,
-  PieChart,
-  GridComponent,
-  TooltipComponent,
-  LegendComponent,
-  TitleComponent,
-  ToolboxComponent,
-  DataZoomComponent,
-  MarkLineComponent,
-  MarkPointComponent,
-  LegendScrollComponent,
-  PictorialBarChart,
-]);
+import 'util/dEcharts/echarts.js'
 
 // my tools
-import dcharts from './util/dEcharts/dcharts.vue'
+import dcharts from 'util/dEcharts/dcharts.vue'
 Vue.component('d-chart', dcharts)
 
 // mock
@@ -67,15 +27,10 @@ import '@/util/mock/base.js'
 import '@/util/mock/test.js'
 
 // the router
-import router from './router'
+import router from '@/router'
 
 // the vuex store
-import store from './vuex/store.js'
-
-// heighlight.js
-import VueHighlightJS from 'vue-highlightjs'
-import './assets/css/atom-one-dark.css'
-Vue.use(VueHighlightJS)
+import store from '@/vuex/store.js'
 
 Vue.config.productionTip = false
 new Vue({

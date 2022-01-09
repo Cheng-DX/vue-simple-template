@@ -1,7 +1,7 @@
 // Vuex
 import Vuex from 'vuex'
 import Vue from 'vue'
-import router from '../router/index'
+import router from '@/router'
 
 // createPersistedState
 import createPersistedState from 'vuex-persistedstate'
