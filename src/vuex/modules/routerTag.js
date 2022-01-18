@@ -1,31 +1,11 @@
-// Vuex
-import Vuex from 'vuex'
-import Vue from 'vue'
 import router from '@/router'
 
-// createPersistedState
-import createPersistedState from 'vuex-persistedstate'
-
-Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  plugins: [createPersistedState()],
+// 是否缓存路由
+const catchedRoutesStateItem = {
   state: {
-    switchType: 'el-fade-in',
-    catchedRoutes: [],
-    routerTagVisible: true,
-    routerTagClosable: true,
-    routerTagCloseEvent: 'backToFirst',
-    routerTagColor: '#fff',
-    notShownWhenEmpty: true,
-    breadcrumbVisible: true,
-    collapse: false,
-    permission: 'admin'
+    catchedRoutes: []
   },
   mutations: {
-    setSwitchType(state, type) {
-      state.switchType = type
-    },
     addRoute(state, toRoute) {
       if (toRoute.meta != undefined && toRoute.meta.notCatche != undefined && toRoute.meta.notCatche) {
         // void
@@ -79,35 +59,82 @@ const store = new Vuex.Store({
         if (targetRoute != null) {
           router.push(targetRoute)
         }
-      }else{
+      } else {
         state.catchedRoutes.splice(index, 1)
       }
     },
     clearAllRoutes(state) {
       state.catchedRoutes = []
     },
+  }
+}
+
+// 路由标签是否可见
+const routerTagVisibleStateItem = {
+  state: {
+    routerTagVisible: false
+  },
+  mutations: {
     setRouterTagVisible(state, visible) {
       state.routerTagVisible = visible
-    },
+    }
+  }
+}
+
+// 路由标签关闭事件
+const routerTagClosableStateItem = {
+  state: {
+    routerTagClosable: true
+  },
+  mutations: {
     setRouterTagClosable(state, closable) {
       state.routerTagClosable = closable
     },
-    setRouterTagCloseEvent(state, closeEvent) {
-      state.routerTagCloseEvent = closeEvent
+  }
+}
+
+// 路由标签关闭事件
+const routerTagCloseEventStateItem = {
+  state: {
+    routerTagCloseEvent: 'backToFirst'
+  },
+  mutations: {
+    setRouterTagCloseEvent(state, event) {
+      state.routerTagCloseEvent = event
     },
+  }
+}
+
+// 路由标签颜色
+const routerTagColorStateItem = {
+  state: {
+    routerTagColor: '#fff'
+  },
+  mutations: {
     setRouterTagColor(state, color) {
       state.routerTagColor = color
     },
+  }
+}
+
+// 空时路由标签是否不显示
+const notShownWhenEmptyStateItem = {
+  state: {
+    notShownWhenEmpty: false
+  },
+  mutations: {
     setNotShownWhenEmpty(state, notShownWhenEmpty) {
       state.notShownWhenEmpty = notShownWhenEmpty
     },
-    setBreadcrumbVisible(state, visible) {
-      state.breadcrumbVisible = visible
-    },
-    setCollapse(state, collapse) {
-      state.collapse = collapse
-    }
   }
-});
+}
 
-export default store
+const routerTagStateArray = [
+  catchedRoutesStateItem,
+  routerTagVisibleStateItem,
+  routerTagClosableStateItem,
+  routerTagCloseEventStateItem,
+  routerTagColorStateItem,
+  notShownWhenEmptyStateItem,
+]
+export default routerTagStateArray

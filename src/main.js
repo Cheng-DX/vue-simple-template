@@ -30,7 +30,7 @@ import '@/util/mock/test.js'
 import router from '@/router'
 
 // the vuex store
-import store from '@/vuex/store.js'
+import store from '@/vuex/index.js'
 
 Vue.config.productionTip = false
 new Vue({
