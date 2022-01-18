@@ -16,7 +16,7 @@ import VueECharts from 'vue-echarts'
 Vue.component('v-chart', VueECharts)
 
 // echarts按需导入
-import 'util/dEcharts/echarts.js'
+import 'util/dEcharts/settings/echarts.js'
 
 // my tools
 import dcharts from 'util/dEcharts/dcharts.vue'
