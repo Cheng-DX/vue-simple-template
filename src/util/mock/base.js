@@ -24,22 +24,22 @@ Mock.mock(
 
 Mock.mock(
   '/api/switchTypeList', [{
-    label: 'None',
-    value: '无动画'
+    label: '无动画',
+    value: 'none'
   }, {
-    label: '淡入淡出1',
+    label: '淡入淡出',
     value: 'el-fade-in'
   }, {
-    label: '淡入淡出2',
+    label: '淡入淡出-线性',
     value: 'el-fade-in-linear'
   }, {
-    label: 'Zoom缩放1',
+    label: 'Zoom缩放-center',
     value: 'el-zoom-in-center'
   }, {
-    label: 'Zoom缩放2',
+    label: 'Zoom缩放-top',
     value: 'el-zoom-in-top'
   }, {
-    label: 'Zoom缩放3',
+    label: 'Zoom缩放-bottom',
     value: 'el-zoom-in-bottom'
   }, ]
 )
@@ -59,7 +59,7 @@ Mock.mock(
     },
     {
       value: 'none',
-      label: '无',
+      label: '停留于当前Tag',
     }
   ]
 )
