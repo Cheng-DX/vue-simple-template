@@ -79,6 +79,13 @@ const allRoutes = [{
         meta: {
           icon: 'el-icon-s-data'
         }
+      },{
+        path: 'markdown',
+        name: 'markdown',
+        component: () => import('../views/home/submenus/submenu1/Markdown.vue'),
+        meta: {
+          icon: 'el-icon-document'
+        }
       }]
     }, {
       path: 'submenu2',

@@ -32,6 +32,10 @@ import router from '@/router'
 // the vuex store
 import store from '@/vuex/index.js'
 
+// markdown
+import VueMarkdown from 'vue-markdown'
+Vue.component('vue-markdown', VueMarkdown)
+
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
