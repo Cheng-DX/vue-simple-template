@@ -1,18 +1,17 @@
 <template>
   <div class="root-filter-data-table">
     <el-button @click="visible = true">OPEN</el-button>
-    <el-dialog
-      :visible.sync="visible"
-      class="dialog"
-      width="95%"
-      top="20px"
-    >
+    <el-dialog :visible.sync="visible" class="dialog" width="95%" top="20px">
       <el-table
         :data="currentData"
         border
         :cell-style="addStyle"
         height="78vh"
         v-loading="tableLoading"
+        highlight-current-row
+        show-summary
+        :summary-method="averageMethod"
+        sum-text="均值"
         :header-cell-style="{
           color: '#3b3b3b',
           fontSize: '15px',
@@ -24,6 +23,8 @@
           :prop="item.prop"
           :label="item.label"
           :key="item.prop"
+          sortable
+          :sort-method="(a, b) => sortMethod(a, b, item.prop)"
           min-width="120px"
           align="center"
         />
@@ -35,7 +36,7 @@
           :page-size="pageSize"
           layout="sizes,total,prev, pager, next, jumper"
           :pager-count="7"
-          :page-sizes="[10, 20, 30,100, totalPage]"
+          :page-sizes="[10, 20, 30, 100, totalPage]"
           @current-change="currentChange"
           @size-change="sizeChange"
           class="pagination"
@@ -61,6 +62,32 @@ export default {
     };
   },
   methods: {
+    averageMethod({ columns, data }) {
+      let result = []
+      columns.forEach(column => {
+        const prop = column.property
+        let sum = 0
+        if (prop !== 'time') {
+          for (let i = 0; i < data.length; i++) {
+            sum += Number(data[i][prop])
+          }
+          const average = (sum / data.length).toFixed(2)
+          result.push(average)
+        } else {
+          result.push('均值')
+        }
+      })
+      return result
+    },
+    sortMethod(a, b, prop) {
+      a = a[prop]
+      b = b[prop]
+      if (typeof Number(a) === 'number' && typeof Number(b) === 'number') {
+        return Number(a) - Number(b)
+      } else {
+        return a.localeCompare(b)
+      }
+    },
     currentChange(val) {
       this.currentPage = val;
 
