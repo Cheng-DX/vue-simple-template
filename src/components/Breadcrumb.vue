@@ -1,12 +1,13 @@
 <template>
   <div class="breadcrumb-root">
-    <el-breadcrumb  class="breadcrumb">
-      <el-breadcrumb-item
-        v-for="(item, index) in breadList"
-        :key="index"
-        :to="item.path"
-        >{{ item.name }}
-      </el-breadcrumb-item>
+    <el-breadcrumb class="breadcrumb">
+      <transition-group name="transition-breadcrumb">
+        <el-breadcrumb-item
+          v-for="item in breadList"
+          :key="item.path"
+          :to="item.path"
+        >{{ item.name }}</el-breadcrumb-item>
+      </transition-group>
     </el-breadcrumb>
   </div>
 </template>
@@ -32,6 +33,21 @@ export default {
 .breadcrumb {
   font-size: 18px;
   align-self: center;
+}
+.transition-breadcrumb-enter-active,
+.transition-breadcrumb-leave-active {
+  transition: all 0.5s;
+}
+.transition-breadcrumb-enter,
+.transition-breadcrumb-leave-active {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.transition-breadcrumb-move {
+  transition: all 0.5s;
+}
+.transition-breadcrumb-leave-active {
+  position: absolute;
 }
 </style>
 
