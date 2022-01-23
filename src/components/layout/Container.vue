@@ -18,30 +18,9 @@
             <toolbar />
           </div>
         </el-collapse-transition>
-
-        <el-collapse-transition>
-          <div class="header-bottom" v-show="routerTagVisible">
-            <el-tag
-              v-for="item in catchedRoutes"
-              :key="item.path"
-              type="success"
-              :closable="routerTagClosable"
-              @close="removeRoute(item)"
-              :style="{
-                marginRight: '10px',
-                backgroundColor: routerTagColor,
-                borderColor: routerTagColor,
-              }"
-            >
-              <router-link :to="item.path" class="link-tag">
-                <i :class="item.icon" />
-                {{ item.name }}
-              </router-link>
-            </el-tag>
-          </div>
-        </el-collapse-transition>
+        <router-tags/>
       </el-header>
-      <el-main class="main">
+      <el-main>
         <transition :name="switchType">
           <router-view />
         </transition>
@@ -54,9 +33,10 @@
 import breadcrumb from "./Breadcrumb.vue";
 import Slider from "./Slider.vue";
 import Toolbar from "./Toolbar.vue";
+import RouterTags from "./RouterTags.vue";
 export default {
   name: "Container",
-  components: { breadcrumb, Slider, Toolbar },
+  components: { breadcrumb, Slider, Toolbar, RouterTags },
   data() {
     return {
       collapse: false,
@@ -92,29 +72,8 @@ export default {
     switchType() {
       return this.$store.state.switchType;
     },
-    catchedRoutes() {
-      return this.$store.state.catchedRoutes;
-    },
-    routerTagVisible() {
-      return (
-        this.$store.state.routerTagVisible &&
-        (this.$store.state.catchedRoutes.length > 0 ||
-          !this.$store.state.notShownWhenEmpty)
-      );
-    },
-    routerTagClosable() {
-      return this.$store.state.routerTagClosable;
-    },
-    routerTagColor() {
-      return this.$store.state.routerTagColor;
-    },
     breadcrumbVisible() {
       return this.$store.state.breadcrumbVisible;
-    },
-  },
-  methods: {
-    removeRoute(route) {
-      this.$store.commit("removeRoute", route);
     },
   },
 };
@@ -125,33 +84,13 @@ export default {
   width: 100%;
   height: 100vh;
 }
-.the-aside{
+.the-aside {
   background: #545c64;
 }
 .header-top {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-.header-bottom {
-  height: 33px;
-  padding-bottom: 5px;
-  margin-top: 5px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-.link-tag.router-link-exact-active {
-  font-size: 13px;
-  text-align: center;
-  text-decoration: auto;
-  color: #000000;
-}
-.link-tag {
-  font-size: 13px;
-  text-align: center;
-  text-decoration: auto;
-  color: #0b857d8e;
 }
 .icon {
   display: flex;

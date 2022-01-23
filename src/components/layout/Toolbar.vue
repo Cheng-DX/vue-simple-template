@@ -54,7 +54,7 @@ export default {
         {
           name: "About This",
           method: () => {
-            window.open("https://github.com/Cheng-DX/MGFrontEnd");
+            window.open("https://github.com/Cheng-DX/vue-simple-template");
           },
         },
       ],

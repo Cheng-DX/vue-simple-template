@@ -60,7 +60,7 @@ const allRoutes = [{
     path: '/home',
     name: '主页',
     component: Layout,
-    redirect: '/home/submenu1/test',
+    redirect: '/home/submenu1/markdown',
     meta: {
       icon: 'el-icon-lightning'
     },
@@ -68,7 +68,7 @@ const allRoutes = [{
       path: 'submenu1',
       name: '主页子菜单1',
       component: () => import('views/home/submenus/submenu1/index.vue'),
-      redirect: '/home/submenu1/test',
+      redirect: '/home/submenu1/markdown',
       meta: {
         icon: 'el-icon-sunset'
       },

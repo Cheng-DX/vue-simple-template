@@ -13,6 +13,7 @@
       :filter-method="filterProps"
       :titles="['未选中列', '已选中列']"
       @change="change"
+      class="prop-transfer"
     />
     <el-dialog :visible.sync="visible" width="95%" top="20px">
       <el-table
