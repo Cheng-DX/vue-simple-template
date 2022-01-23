@@ -22,7 +22,7 @@ npm run serve
 
   > 在目录结构中👇
 
-![image-20220123213730802](C:\Users\猫丞\Desktop\9M\frontendVue\READMEFiles\pictures\image-20220123213730802.png)
+![image-20220123213730802](.\READMEFiles\pictures\image-20220123213730802.png)
 
 - **配置路由结构**
 
@@ -104,7 +104,7 @@ npm run serve
 
 - **效果**。由于侧边栏和面包屑是基于路由结构的，配置好路由结构，侧边栏就会渲染出这个tag。
 
-![image-20220123215050671](C:\Users\猫丞\Desktop\9M\frontendVue\READMEFiles\pictures\image-20220123215050671.png)
+![image-20220123215050671](.\READMEFiles\pictures\image-20220123215050671.png)
 
 #### 4.License
 
