@@ -1,5 +1,4 @@
-const Layout = () => import('components/Container.vue')
-
+const Layout = () => import('components/layout/Container.vue')
 
 // permission
 const user = 'user'
@@ -13,28 +12,36 @@ const allRoutes = [{
       notLoad: true,
       notCatche: true,
     },
-    component: () => import('../views/user/Login.vue')
+    component: () => import('views/user/Login.vue')
   },
   {
     path: '/',
-    name: 'dashbored',
-    meta: {
-      icon: 'el-icon-light-rain',
-    },
+    name: 'root',
     component: Layout,
+    redirect: '/dashboard',
+    meta: {
+      icon: 'el-icon-s-home',
+    },
+    children: [{
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import('views/dashboard/Index.vue'),
+        meta: {
+          icon: 'el-icon-odometer',
+        }
+    }]
   },
   {
     path: '/profile',
     name: '个人中心',
     component: Layout,
     meta: {
-      notLoad: false,
       icon: 'el-icon-user',
     },
     children: [{
         path: 'me',
         name: '我',
-        component: () => import('../views/user/Me.vue'),
+        component: () => import('views/user/Me.vue'),
         meta: {
           icon: 'el-icon-medal-1'
         }
@@ -42,7 +49,7 @@ const allRoutes = [{
       {
         path: 'settings',
         name: '设置',
-        component: () => import('../views/user/Settings.vue'),
+        component: () => import('views/user/Settings.vue'),
         meta: {
           icon: 'el-icon-setting',
         },
@@ -60,7 +67,7 @@ const allRoutes = [{
     children: [{
       path: 'submenu1',
       name: '主页子菜单1',
-      component: () => import('../views/home/submenus/submenu1/index.vue'),
+      component: () => import('views/home/submenus/submenu1/index.vue'),
       redirect: '/home/submenu1/test',
       meta: {
         icon: 'el-icon-sunset'
@@ -68,21 +75,21 @@ const allRoutes = [{
       children: [{
         path: 'router',
         name: '路由结构',
-        component: () => import('../views/home/submenus/submenu1/Router.vue'),
+        component: () => import('views/home/submenus/submenu1/Router.vue'),
         meta: {
           icon: 'el-icon-heavy-rain'
         }
       }, {
-        path: 'test',
-        name: '测试',
-        component: () => import('../views/home/submenus/submenu1/FilterDataTable.vue'),
+        path: 'filter-data-table',
+        name: 'Quiz2',
+        component: () => import('views/home/submenus/submenu1/FilterDataTable.vue'),
         meta: {
           icon: 'el-icon-s-data'
         }
       },{
         path: 'markdown',
-        name: 'markdown',
-        component: () => import('../views/home/submenus/submenu1/Markdown.vue'),
+        name: 'Markdown插件',
+        component: () => import('views/home/submenus/submenu1/Markdown.vue'),
         meta: {
           icon: 'el-icon-document'
         }
@@ -90,7 +97,7 @@ const allRoutes = [{
     }, {
       path: 'submenu2',
       name: '随机name',
-      component: () => import('../views/home/submenus/Submenu2.vue'),
+      component: () => import('views/home/submenus/Submenu2.vue'),
       meta: {
         icon: 'el-icon-sunrise',
         permissions: [user]
@@ -98,7 +105,7 @@ const allRoutes = [{
     }, {
       path: 'submenu3',
       name: '随机address',
-      component: () => import('../views/home/submenus/Submenu3.vue'),
+      component: () => import('views/home/submenus/Submenu3.vue'),
       meta: {
         icon: 'el-icon-sunrise-1',
         permissions: [handler]
@@ -112,7 +119,7 @@ const allRoutes = [{
       notLoad: true,
       notCatche: true,
     },
-    component: () => import('../views/other/NotFound.vue')
+    component: () => import('views/other/NotFound.vue')
   }
 ]
 

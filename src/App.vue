@@ -9,9 +9,6 @@ export default {
 </script>
 
 <style>
-.body {
-  margin: 0;
-}
 ::-webkit-scrollbar {
   width: 7px;
   height: 10px;

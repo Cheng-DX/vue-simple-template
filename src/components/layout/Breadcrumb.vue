@@ -6,7 +6,8 @@
           v-for="item in breadList"
           :key="item.path"
           :to="item.path"
-        >{{ item.name }}</el-breadcrumb-item>
+          >{{ item.name }}</el-breadcrumb-item
+        >
       </transition-group>
     </el-breadcrumb>
   </div>
@@ -16,7 +17,15 @@
 export default {
   computed: {
     breadList() {
-      return this.$route.matched;
+      const matchedRoutes = this.$route.matched;
+      if (matchedRoutes.length === 0) {
+        return [];
+      } else if (matchedRoutes[0].path === "") {
+        // 去掉path为空的的layout
+        return matchedRoutes.slice(1);
+      } else {
+        return matchedRoutes;
+      }
     },
   },
 };

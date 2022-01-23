@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <el-aside width="auto" :style="minWidth">
+    <el-aside width="auto" :style="minWidth" class="the-aside">
       <slider :menuCollapse="collapse" />
     </el-aside>
     <el-container>
@@ -123,9 +123,11 @@ export default {
 <style scoped>
 .container {
   width: 100%;
-  height: 97vh;
+  height: 100vh;
 }
-
+.the-aside{
+  background: #545c64;
+}
 .header-top {
   display: flex;
   justify-content: flex-start;

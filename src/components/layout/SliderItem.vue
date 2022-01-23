@@ -1,5 +1,5 @@
 <template>
-  <el-submenu v-if="hasChildren" :index="truePath(currentPath, item.path)">
+  <el-submenu v-if="hasMoreChildren" :index="truePath(currentPath, item.path)">
     <template #title>
       <i v-if="hasIcon(item.meta)" :class="item.meta.icon" />
       <span>{{ item.name }}</span>
@@ -11,6 +11,14 @@
       :currentPath="truePath(currentPath, item.path)"
     />
   </el-submenu>
+  <el-menu-item
+    v-else-if="hasOneChild"
+    :index="truePath(currentPath, item.children[0].path)"
+    class="menu-item"
+  >
+    <i v-if="hasIcon(item.children[0].meta)" :class="item.children[0].meta.icon" :style="iconStyle" />
+    <span>{{ item.children[0].name }}</span>
+  </el-menu-item>
   <el-menu-item
     v-else
     :index="truePath(currentPath, item.path)"
@@ -50,9 +58,11 @@ export default {
     },
   },
   computed: {
-    hasChildren() {
-      let flag = this.item.children && this.item.children.length > 0;
-      return flag;
+    hasMoreChildren() {
+      return this.item.children && this.item.children.length > 1;
+    },
+    hasOneChild(){
+      return this.item.children && this.item.children.length === 1;
     },
     iconStyle() {
       return {

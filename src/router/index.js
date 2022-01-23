@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../vuex/index.js'
+import store from '@/vuex/index.js'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'

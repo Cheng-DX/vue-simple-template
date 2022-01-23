@@ -5,9 +5,12 @@
     :collapse="menuCollapse"
     min-width="200px"
     class="my-menu"
+    background-color="#545c64"
+    text-color="#fff"
+    active-text-color="#ffd04b"
   >
     <template v-for="(item, index) in slider">
-      <slider-item v-if="show(item)" :item="item" :key="index"/>
+      <slider-item v-if="show(item)" :item="item" :key="index" />
     </template>
   </el-menu>
 </template>
