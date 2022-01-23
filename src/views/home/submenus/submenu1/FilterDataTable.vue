@@ -1,7 +1,20 @@
 <template>
   <div class="root-filter-data-table">
-    <el-button @click="visible = true">OPEN</el-button>
-    <el-dialog :visible.sync="visible" class="dialog" width="95%" top="20px">
+    <el-button
+      @click="visible = true"
+      type="primary"
+      style="margin-bottom: 20px"
+      >OPEN</el-button
+    >
+    <el-transfer
+      v-model="checkdKeys"
+      :data="labelsAndProps"
+      filterable
+      :filter-method="filterProps"
+      :titles="['未选中列', '已选中列']"
+      @change="change"
+    />
+    <el-dialog :visible.sync="visible" width="95%" top="20px">
       <el-table
         :data="currentData"
         border
@@ -18,16 +31,18 @@
           fontWeight: '800',
         }"
       >
-        <el-table-column
-          v-for="item in labelsAndProps"
-          :prop="item.prop"
-          :label="item.label"
-          :key="item.prop"
-          sortable
-          :sort-method="(a, b) => sortMethod(a, b, item.prop)"
-          min-width="120px"
-          align="center"
-        />
+        <template v-for="item in labelsAndProps">
+          <el-table-column
+            :prop="item.key"
+            :label="item.label"
+            :key="item.key"
+            v-if="item.show"
+            sortable
+            :sort-method="(a, b) => sortMethod(a, b, item.prop)"
+            min-width="120px"
+            align="center"
+          />
+        </template>
       </el-table>
       <div style="display: flex; justify-content: center">
         <el-pagination
@@ -59,33 +74,66 @@ export default {
       pageSize: 10,
       currentData: [],
       tableLoading: false,
+      checkdKeys: [],
+      checkList: [],
     };
   },
   methods: {
+    filterProps(text, item) {
+      return (
+        item.label.indexOf(text) > -1 ||
+        item.key.indexOf(text) > -1 ||
+        item.pinyin.indexOf(text) > -1
+      );
+    },
+    change(currentCheckedKeys, direction, movedKeys) {
+      if (direction === "left") {
+        movedKeys.forEach((item) => {
+          this.labelsAndProps.forEach((labelAndProp) => {
+            if (labelAndProp.key === item) {
+              labelAndProp.show = false;
+            }
+          });
+        });
+      } else if (direction === "right") {
+        movedKeys.forEach((item) => {
+          this.labelsAndProps.forEach((item2) => {
+            if (item === item2.key) {
+              item2.show = true;
+            }
+          });
+        });
+      } else {
+        this.$message({
+          message: "未知错误",
+          type: "error",
+        });
+      }
+    },
     averageMethod({ columns, data }) {
-      let result = []
-      columns.forEach(column => {
-        const prop = column.property
-        let sum = 0
-        if (prop !== 'time') {
+      let result = [];
+      columns.forEach((column) => {
+        const prop = column.property;
+        let sum = 0;
+        if (prop !== "time") {
           for (let i = 0; i < data.length; i++) {
-            sum += Number(data[i][prop])
+            sum += Number(data[i][prop]);
           }
-          const average = (sum / data.length).toFixed(2)
-          result.push(average)
+          const average = (sum / data.length).toFixed(2);
+          result.push(average);
         } else {
-          result.push('均值')
+          result.push("均值");
         }
-      })
-      return result
+      });
+      return result;
     },
     sortMethod(a, b, prop) {
-      a = a[prop]
-      b = b[prop]
-      if (typeof Number(a) === 'number' && typeof Number(b) === 'number') {
-        return Number(a) - Number(b)
+      a = a[prop];
+      b = b[prop];
+      if (typeof Number(a) === "number" && typeof Number(b) === "number") {
+        return Number(a) - Number(b);
       } else {
-        return a.localeCompare(b)
+        return a.localeCompare(b);
       }
     },
     currentChange(val) {
@@ -105,11 +153,12 @@ export default {
           this.currentPage * this.pageSize
         );
         this.tableLoading = false;
-      }, 1000);
+      }, val * 10);
     },
     addStyle({ row, column, rowIndex, columnIndex }) {
       const prop = column.property;
       const time = row.time;
+
       if (this.errorMap[prop] && this.errorMap[prop][time]) {
         return {
           background: "#de4141",
@@ -130,6 +179,7 @@ export default {
       const data = res.data;
       const dateList = data.dateList;
       const lineData = data.line;
+
       let tableData = [];
       let firstTime = true;
       for (let prop in lineData) {
@@ -152,6 +202,7 @@ export default {
         this.currentPage * this.pageSize
       );
     });
+
     this.$axios.get("/getErrorData").then((res) => {
       let errorMap = {};
       const data = res.data.errorList;
@@ -170,12 +221,18 @@ export default {
       let labelsAndProps = [];
       labelsAndProps.push({
         label: "时间",
-        prop: "time",
+        key: "time",
+        disabled: true,
+        show: true,
+        pinyin: "shijian",
       });
       for (let i = 0; i < data.props.length; i++) {
         labelsAndProps.push({
           label: data.labels[i],
-          prop: data.props[i],
+          key: data.props[i],
+          disabled: false,
+          show: false,
+          pinyin: data.pinyin[i],
         });
       }
       this.labelsAndProps = labelsAndProps;
