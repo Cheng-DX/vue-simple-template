@@ -1,5 +1,5 @@
+![](https://visitor-badge.glitch.me/badge?page_id=vue-simple-template-page-id)
 
-![](https://visitor-badge.glitch.me/badge?page_id=vue-simple-template)
 <p>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.14-brightgreen.svg" alt="vue">
@@ -14,6 +14,7 @@
     <img src="https://img.shields.io/github/release/Cheng-DX/vue-simple-template.svg" alt="GitHub release">
   </a>
 </p>
+
 #### 1.跑起来
 
 ```bash
