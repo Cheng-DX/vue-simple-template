@@ -1,4 +1,4 @@
-![](https://visitor-badge.glitch.me/badge?page_id=Cheng-DX$vue-simple-template)
+![](https://visitor-badge.glitch.me/badge?page_id=Cheng-DX_vue-simple-template)
 #### 1.跑起来
 
 ```bash
