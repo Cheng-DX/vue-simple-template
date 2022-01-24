@@ -1,5 +1,19 @@
-[![Ashutosh's github activity graph](https://activity-graph.herokuapp.com/graph?username=Cheng-DX&theme=dracula)](https://github.com/ashutosh00710/github-readme-activity-graph)
 
+![](https://visitor-badge.glitch.me/badge?page_id=vue-simple-template)
+<p>
+  <a href="https://github.com/vuejs/vue">
+    <img src="https://img.shields.io/badge/vue-2.6.14-brightgreen.svg" alt="vue">
+  </a>
+  <a href="https://github.com/ElemeFE/element">
+    <img src="https://img.shields.io/badge/element--ui-2.15.6-brightgreen.svg" alt="element-ui">
+  </a>
+  <a href="https://github.com/Cheng-DX/vue-simple-template/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
+  </a>
+  <a href="https://github.com/Cheng-DX/vue-simple-template/releases">
+    <img src="https://img.shields.io/github/release/Cheng-DX/vue-simple-template.svg" alt="GitHub release">
+  </a>
+</p>
 #### 1.跑起来
 
 ```bash
