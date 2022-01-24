@@ -9,8 +9,8 @@
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <template v-for="(item, index) in slider">
-      <slider-item v-if="show(item)" :item="item" :key="index" />
+    <template v-for="item in slider">
+      <slider-item v-if="show(item)" :item="item" :key="item.path" />
     </template>
   </el-menu>
 </template>

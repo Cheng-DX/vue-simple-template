@@ -5,8 +5,8 @@
       <span>{{ item.name }}</span>
     </template>
     <slider-item
-      v-for="(subItem, index) in item.children"
-      :key="index"
+      v-for="subItem in item.children"
+      :key="subItem.path"
       :item="subItem"
       :currentPath="truePath(currentPath, item.path)"
     />
@@ -14,7 +14,6 @@
   <el-menu-item
     v-else-if="hasOneChild"
     :index="truePath(currentPath, item.children[0].path)"
-    class="menu-item"
   >
     <i v-if="hasIcon(item.children[0].meta)" :class="item.children[0].meta.icon" :style="iconStyle" />
     <span>{{ item.children[0].name }}</span>
@@ -22,7 +21,6 @@
   <el-menu-item
     v-else
     :index="truePath(currentPath, item.path)"
-    class="menu-item"
   >
     <i v-if="hasIcon(item.meta)" :class="item.meta.icon" :style="iconStyle" />
     <span>{{ item.name }}</span>
