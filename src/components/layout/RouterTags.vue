@@ -4,7 +4,7 @@
       <el-tag
         v-for="item in catchedRoutes"
         :key="item.path"
-        type="success"
+        type="info"
         :closable="routerTagClosable"
         @close="removeRoute(item)"
         :style="{
@@ -26,7 +26,6 @@
 <script>
 export default {
   name: "RouterTags",
-  //获取当前元素距离body原点的距离
   methods: {
     removeRoute(route) {
       this.$store.commit("removeRoute", route);

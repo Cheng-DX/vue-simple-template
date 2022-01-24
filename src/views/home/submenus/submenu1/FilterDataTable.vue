@@ -26,6 +26,9 @@
         show-summary
         :summary-method="averageMethod"
         sum-text="均值"
+        element-loading-text="加载中"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="#ffffff77"
         :header-cell-style="{
           color: '#3b3b3b',
           fontSize: '15px',
@@ -73,7 +76,6 @@ export default {
       totalPage: 320,
       currentPage: 1,
       pageSize: 10,
-      currentData: [],
       tableLoading: false,
       checkdKeys: [],
       checkList: [],
@@ -137,29 +139,19 @@ export default {
         return a.localeCompare(b);
       }
     },
-    currentChange(val) {
-      this.currentPage = val;
-
-      this.currentData = this.tableData.slice(
-        (this.currentPage - 1) * this.pageSize,
-        this.currentPage * this.pageSize
-      );
+    currentChange(newPage) {
+      this.currentPage = newPage;
     },
-    sizeChange(val) {
+    sizeChange(newPageSize) {
       this.tableLoading = true;
       setTimeout(() => {
-        this.pageSize = val;
-        this.currentData = this.tableData.slice(
-          (this.currentPage - 1) * this.pageSize,
-          this.currentPage * this.pageSize
-        );
+        this.pageSize = newPageSize;
         this.tableLoading = false;
-      }, val * 10);
+      }, Math.sqrt(newPageSize) * 100);
     },
     addStyle({ row, column, rowIndex, columnIndex }) {
       const prop = column.property;
       const time = row.time;
-
       if (this.errorMap[prop] && this.errorMap[prop][time]) {
         return {
           background: "#de4141",
@@ -173,6 +165,14 @@ export default {
           fontSize: "13px",
         };
       }
+    },
+  },
+  computed: {
+    currentData() {
+      return this.tableData.slice(
+        (this.currentPage - 1) * this.pageSize,
+        this.currentPage * this.pageSize
+      );
     },
   },
   created() {
@@ -198,10 +198,6 @@ export default {
         }
       }
       this.tableData = tableData;
-      this.currentData = this.tableData.slice(
-        (this.currentPage - 1) * this.pageSize,
-        this.currentPage * this.pageSize
-      );
     });
 
     this.$axios.get("/getErrorData").then((res) => {
@@ -216,6 +212,7 @@ export default {
         errorMap[prop][date] = true;
       }
       this.errorMap = errorMap;
+      
     });
     this.$axios.get("/getProp2label").then((res) => {
       const data = res.data;

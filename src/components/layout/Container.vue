@@ -20,7 +20,7 @@
         </el-collapse-transition>
         <router-tags/>
       </el-header>
-      <el-main>
+      <el-main class="main">
         <transition :name="switchType">
           <router-view />
         </transition>
@@ -104,5 +104,10 @@ export default {
   font-size: 22px;
   border: none;
   padding: 0;
+}
+.main{
+  padding-inline: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 </style>
