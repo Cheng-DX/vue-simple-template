@@ -1,5 +1,6 @@
-[![tree's GitHub stats](https://github-readme-stats.vercel.app/api?username=Cheng-DX&
-hide=contribs,prs&show_icons=true&theme=radical)](https://github.com/anuraghazra/github-readme-stats)
+[![tree's GitHub stats](https://github-readme-stats.vercel.app/api?username=Cheng-DX&hide=contribs,prs&show_icons=true&theme=radical)](https://github.com/anuraghazra/github-readme-stats)
+[![Ashutosh's github activity graph](https://activity-graph.herokuapp.com/graph?username=Cheng-DX&theme=dracula)](https://github.com/ashutosh00710/github-readme-activity-graph)
+
 
 #### 1.跑起来
 
