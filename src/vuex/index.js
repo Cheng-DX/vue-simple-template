@@ -7,10 +7,11 @@ import { itemToModule } from './itemToModule.js'
 // modules
 import globalDisplayStateArray from './modules/globalDisplay.js'
 import routerTagStateArray from './modules/routerTag.js'
-
+import githubStateArray from './modules/github.js'
 const stateArray = [
   ...globalDisplayStateArray,
-  ...routerTagStateArray
+  ...routerTagStateArray,
+  ...githubStateArray,
 ]
 const stateAndMutations = itemToModule(stateArray)
 
@@ -18,7 +19,6 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   plugins: plugins,
-  // 不使用modules
   state: stateAndMutations.state,
   mutations: stateAndMutations.mutations,
 });

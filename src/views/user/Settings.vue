@@ -1,7 +1,12 @@
 <template>
   <div class="root">
     <el-row style="height: 100%" :gutter="35">
-      <el-col :span="7" class="col">
+      <el-col
+        :xs="{ span: 21 }"
+        :sm="{ span: 11 }"
+        :md="{ span: 5 }"
+        class="col"
+      >
         <div style="height: auto">
           <setting-card
             title="显示路由标签"
@@ -41,7 +46,12 @@
           </setting-card>
         </div>
       </el-col>
-      <el-col :span="7" class="col">
+      <el-col
+        :xs="{ span: 21 }"
+        :sm="{ span: 11 }"
+        :md="{ span: 5 }"
+        class="col"
+      >
         <div style="height: auto">
           <setting-card
             title="页面之间的切换动画"
@@ -58,7 +68,23 @@
           />
         </div>
       </el-col>
-      <el-col :span="7" class="col"></el-col>
+      <el-col
+        :xs="{ span: 21 }"
+        :sm="{ span: 11 }"
+        :md="{ span: 5 }"
+        class="col"
+      >
+        <setting-card title="Github用户名">
+          <el-input v-model="githubUsername" />
+        </setting-card>
+      </el-col>
+      <el-col
+        :xs="{ span: 21 }"
+        :sm="{ span: 11 }"
+        :md="{ span: 5 }"
+        class="col"
+      >
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -79,6 +105,7 @@ export default {
       notShownWhenEmpty: null,
       predefineColorList: ["#f0f9eb", "#f4f4f5", "#fdf6ec", "#fef0f0"],
       breadcrumbVisible: null,
+      githubUsername: null,
     };
   },
   created() {
@@ -95,6 +122,12 @@ export default {
     this.routerTagColor = this.$store.state.routerTagColor;
     this.notShownWhenEmpty = this.$store.state.notShownWhenEmpty;
     this.breadcrumbVisible = this.$store.state.breadcrumbVisible;
+    this.githubUsername = this.$store.state.githubUsername;
+  },
+  watch: {
+    githubUsername(val) {
+      this.$store.commit("setGithubUsername", val);
+    },
   },
   methods: {
     commitSwitchType(newVal) {

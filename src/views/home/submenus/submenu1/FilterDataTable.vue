@@ -204,6 +204,7 @@ export default {
       let errorMap = {};
       const data = res.data.errorList;
       for (let item of data) {
+        console.log(item)
         const prop = item.prop;
         const date = item.date;
         if (errorMap[prop] === undefined) {
@@ -211,8 +212,7 @@ export default {
         }
         errorMap[prop][date] = true;
       }
-      this.errorMap = errorMap;
-      
+      this.errorMap = errorMap;   
     });
     this.$axios.get("/getProp2label").then((res) => {
       const data = res.data;

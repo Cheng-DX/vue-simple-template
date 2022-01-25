@@ -36,10 +36,6 @@ import store from '@/vuex/index.js'
 import VueMarkdown from 'vue-markdown'
 Vue.component('vue-markdown', VueMarkdown)
 
-// fullscreen
-import VueFullscreen from 'vue-fullscreen'
-Vue.use(VueFullscreen)
-
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
