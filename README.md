@@ -29,6 +29,14 @@ npm run serve
 
 #### 2.技术栈
 
+- Vue.js
+- ElementUI
+- VueRouter
+- Vuex
+- axios
+- mockjs
+- ECharts VueEcharts DEcharts
+
 #### 3.使用说明
 
 ##### 3.1 增加一个新页面
