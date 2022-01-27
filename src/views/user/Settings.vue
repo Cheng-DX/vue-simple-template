@@ -21,6 +21,13 @@
             :switch-change="changeClosable"
             active-color="green"
           />
+          <setting-card title="路由标签上限">
+            <el-input
+              v-model="maxMount"
+              oninput="value=value.replace(/[^\d]/g,'')"
+              min="1"
+            />
+          </setting-card>
           <setting-card
             title="全部关闭时隐藏Tag栏"
             type="switch"
@@ -74,7 +81,7 @@
         :md="{ span: 5 }"
         class="col"
       >
-        <setting-card title="Github用户名">
+        <setting-card title="GitHub用户名">
           <el-input v-model="githubUsername" />
         </setting-card>
       </el-col>
@@ -106,6 +113,7 @@ export default {
       predefineColorList: ["#f0f9eb", "#f4f4f5", "#fdf6ec", "#fef0f0"],
       breadcrumbVisible: null,
       githubUsername: null,
+      maxMount: null,
     };
   },
   created() {
@@ -123,10 +131,14 @@ export default {
     this.notShownWhenEmpty = this.$store.state.notShownWhenEmpty;
     this.breadcrumbVisible = this.$store.state.breadcrumbVisible;
     this.githubUsername = this.$store.state.githubUsername;
+    this.maxMount = this.$store.state.maxMount;
   },
   watch: {
     githubUsername(val) {
       this.$store.commit("setGithubUsername", val);
+    },
+    maxMount(val) {
+      this.$store.commit("setMaxMount", val);
     },
   },
   methods: {

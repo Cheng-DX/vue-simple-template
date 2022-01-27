@@ -32,14 +32,14 @@ export default {
     return {
       buttons: [
         {
-          name: "me",
+          name: "我",
           method: () => {
             if (this.$route != "/profile/me") 
               this.$router.push("/profile/me");
           },
         },
         {
-          name: "settings",
+          name: "设置",
           method: () => {
             if (this.$route != "/profile/me")
               this.$router.push("/profile/settings");

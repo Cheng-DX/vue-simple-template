@@ -128,7 +128,16 @@ const notShownWhenEmptyStateItem = {
     },
   }
 }
-
+const maxMountStateItem = {
+  state: {
+    maxMount: 5
+  },
+  mutations: {
+    setMaxMount(state, maxMount) {
+      state.maxMount = maxMount
+    }
+  }
+}
 const routerTagStateArray = [
   catchedRoutesStateItem,
   routerTagVisibleStateItem,
@@ -136,5 +145,6 @@ const routerTagStateArray = [
   routerTagCloseEventStateItem,
   routerTagColorStateItem,
   notShownWhenEmptyStateItem,
+  maxMountStateItem
 ]
 export default routerTagStateArray

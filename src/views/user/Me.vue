@@ -54,7 +54,7 @@ import SettingCard from "components/SettingCard.vue";
 import UserCard from "components/UserCard.vue";
 export default {
   name: "Me",
-  components: { UserCard, SettingCard },
+  components: { UserCard, SettingCard},
   data() {
     return {
       user: {
