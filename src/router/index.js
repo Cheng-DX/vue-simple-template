@@ -56,6 +56,7 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   store.commit('addRoute', to);
   NProgress.start()
+  
   if (to.name) {
     document.title = to.name;
   }

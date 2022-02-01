@@ -20,11 +20,13 @@
         </el-collapse-transition>
         <router-tags/>
       </el-header>
+
       <el-main class="main">
         <transition :name="switchType">
           <router-view />
         </transition>
       </el-main>
+      
     </el-container>
   </el-container>
 </template>
