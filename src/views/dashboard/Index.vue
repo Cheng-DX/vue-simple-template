@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard-root">
+    
     <Ribbon
       text="STAR ME ON GITHUB🐰"
       url="https://github.com/Cheng-DX/vue-simple-template"
@@ -25,23 +26,6 @@ export default {
     githubUsername() {
       return this.$store.state.githubUsername;
     },
-  },
-  created() {
-    this.$axios
-      .get("https://api.github.com/users/" + this.githubUsername)
-      .then((res) => {
-        this.userInfo = res.data;
-        // 迭代userInfo的所有属性，并将其设置为null
-      });
-    this.$axios(
-      "https://api.github.com/orgs/Cheng-DX/vue-simple-template/repos"
-    )
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   },
 };
 </script>
