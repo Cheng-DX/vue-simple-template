@@ -95,9 +95,9 @@ const allRoutes = [{
         }
       }]
     }, {
-      path: 'submenu2',
-      name: '随机name',
-      component: () => import('views/home/submenus/Submenu2.vue'),
+      path: 'custom-chart',
+      name: '自定义图表',
+      component: () => import('views/home/submenus/CustomChart.vue'),
       meta: {
         icon: 'el-icon-sunrise',
         permissions: [user]

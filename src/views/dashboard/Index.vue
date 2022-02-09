@@ -1,6 +1,5 @@
 <template>
   <div class="dashboard-root">
-    
     <Ribbon
       text="STAR ME ON GITHUB🐰"
       url="https://github.com/Cheng-DX/vue-simple-template"

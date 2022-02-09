@@ -10,6 +10,7 @@ import {
   LineChart,
   PieChart,
   PictorialBarChart,
+  CustomChart
 } from 'echarts/charts'
 import {
   GridComponent,
@@ -38,4 +39,5 @@ use([
   MarkPointComponent,
   LegendScrollComponent,
   PictorialBarChart,
+  CustomChart
 ]);
