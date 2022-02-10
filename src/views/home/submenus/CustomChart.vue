@@ -1,5 +1,5 @@
 <template>
-  <div style="height:70vh;width: 80vw;">
+  <div class="chart">
     <d-chart :option="option"></d-chart>
   </div>
 </template>
@@ -14,7 +14,8 @@ export default {
   created() {
     const data = [
       [1,2],
-      [2,3]
+      [2,3],
+      [1,1]
     ]
     this.option = {
       tooltip: {
@@ -45,7 +46,7 @@ export default {
               points.push(api.coord(data[i]));
             }
             return {
-              type: 'polyline',
+              type: 'polygon',
               transition: ['shape'],
               shape: {
                 points: points
@@ -62,5 +63,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$color: #d4101000;
+.chart {
+  height: 70vh;
+  width: 80vw;
+  background: $color;
+}
 </style>

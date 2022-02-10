@@ -27,8 +27,10 @@
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
     "@vue/composition-api": "^1.4.1",
+    "element-theme-dark": "^1.0.3",
     "node-sass": "^7.0.0",
-    "sass-loader": "^12.4.0",
+    "sass": "^1.49.7",
+    "sass-loader": "^10.1.1",
     "vue-template-compiler": "^2.6.14",
     "vuex-persistedstate": "^4.1.0"
   }

@@ -85,6 +85,7 @@ export default {
 .container {
   width: 100%;
   height: 100vh;
+  background: url("~@/assets/background.png") no-repeat;
 }
 .the-aside {
   background: #545c64;
