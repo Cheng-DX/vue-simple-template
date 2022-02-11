@@ -21,6 +21,11 @@ export default {
       userInfo: null,
     };
   },
+  created() {
+    this.$axios.get("test/getAllUsers").then(res => {
+      console.log(res.data)
+    })
+  },
   computed: {
     githubUsername() {
       return this.$store.state.githubUsername;
