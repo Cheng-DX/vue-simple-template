@@ -1,6 +1,6 @@
 <template>
   <el-container class="container">
-    <el-aside width="auto" :style="minWidth" class="the-aside">
+    <el-aside width="auto" :style="minWidth" class="the-aside hidden-xs-only">
       <slider :menuCollapse="collapse" />
     </el-aside>
     <el-container>
@@ -8,17 +8,13 @@
         <el-collapse-transition>
           <div class="header-top" v-show="breadcrumbVisible">
             <div class="icon">
-              <el-button
-                class="button"
-                :icon="menuIcon"
-                @click="collapse = !collapse"
-              />
+              <el-button class="button" :icon="menuIcon" @click="collapse = !collapse" />
             </div>
             <breadcrumb />
             <toolbar />
           </div>
         </el-collapse-transition>
-        <router-tags/>
+        <router-tags />
       </el-header>
 
       <el-main class="main">
@@ -26,7 +22,6 @@
           <router-view />
         </transition>
       </el-main>
-      
     </el-container>
   </el-container>
 </template>
@@ -107,7 +102,7 @@ export default {
   border: none;
   padding: 0;
 }
-.main{
+.main {
   padding-inline: 20px;
   padding-top: 5px;
   padding-bottom: 10px;

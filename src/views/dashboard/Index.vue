@@ -7,24 +7,91 @@
       color="#73549E"
       fixed
     />
+    <el-row>
+      <el-col :span="8" :xs="{ span: 20 }">
+        <div class="commit-timeline">
+          <el-timeline>
+            <el-timeline-item
+              v-for="commit in commits"
+              :key="commit.time"
+              :timestamp="commit.time"
+              placement="top"
+              size="large"
+              :type="randomType()"
+              :icon="randomIcon()"
+            >
+              <commit-item
+                :content="commit.content"
+                :time="commit.time"
+                :avatar="commit.avatar"
+                :username="commit.username"
+              />
+            </el-timeline-item>
+          </el-timeline>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 import Ribbon from "vue-ribbon";
+import CommitItem from "components/CommitItem.vue";
 export default {
   components: {
     Ribbon,
+    CommitItem,
   },
   data() {
     return {
-      userInfo: null,
+      repoName: "vue-simple-template",
+      repoInfo: null,
+      commits: [],
     };
   },
+  methods: {
+    randomType() {
+      const types = ["success", "warning", "danger", "primary"];
+      return types[Math.floor(Math.random() * types.length)];
+    },
+    randomIcon() {
+      const icons = ["el-icon-light-rain",
+        "el-icon-lightning",
+        "el-icon-heavy-rain",
+        "el-icon-sunrise",
+        "el-icon-sunrise-1",
+        "el-icon-sunset",
+        "el-icon-sunny",
+        "el-icon-cloudy",
+        "el-icon-partly-cloudy",
+        "el-icon-cloudy-and-sunny",
+        "el-icon-moon",
+        "el-icon-moon-night"]
+      return icons[Math.floor(Math.random() * icons.length)];
+    }
+  },
   created() {
-    this.$axios.get("test/getAllUsers").then(res => {
-      console.log(res.data)
-    })
+    this.$axios
+      .get(`https://api.github.com/repos/Cheng-DX/${this.repoName}`)
+      .then((res) => {
+        this.repoInfo = res.data;
+      });
+    this.$axios
+      .get(`https://api.github.com/repos/Cheng-DX/${this.repoName}/commits`)
+      .then((res) => {
+        console.log(res.data)
+        const data = res.data;
+        let commits = []
+        for (let item of data) {
+          commits.push({
+            time: item.commit.author.date.replace(/T/g, " ").replace(/Z/g, ""),
+            content: item.commit.message,
+            avatar: item.committer.avatar_url,
+            username: item.committer.login,
+          })
+        }
+        this.commits = commits;
+      })
   },
   computed: {
     githubUsername() {
@@ -34,9 +101,5 @@ export default {
 };
 </script>
 <style scoped>
-.dashboard-root {
-  height: 100%;
-  width: 100%;
-  background: #3f83dbc9;
-}
+
 </style>
