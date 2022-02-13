@@ -2,49 +2,50 @@
   <div class="root">
     <el-carousel :interval="3000" height="200px" class="carousel">
       <el-carousel-item v-for="img in imgs" :key="img.id">
-        <el-image
-          style="height: 100%; width: 100%"
-          fit="contain"
-          :src="img.src"
-        />
+        <el-image style="height: 100%; width: 100%" fit="contain" :src="img.src" />
       </el-carousel-item>
     </el-carousel>
     <div class="bottom-panel">
-      <div class="user-card">
-        <user-card :user="user" />
-      </div>
-      <div class="charts">
-        <el-card>
-          <template #header>
-            <div class="charts-head">
-              <h3>DCHART 随机图表</h3>
-              <el-tag type="primary" style="margin-inline: 20px">
-                <el-button
-                  icon="el-icon-paperclip"
-                  type="text"
-                  size="small"
-                  @click="openDChartGithubAddress"
-                  >组件地址</el-button
-                >
-              </el-tag>
-            </div>
-          </template>
-          <div v-for="chart in charts" :key="chart.id" class="chart-sample">
-            <div class="chart-panel">
-              <d-chart
-                v-if="chart.fastMode"
-                fastMode
-                :xData="chart.xData"
-                :yData="chart.yData"
-                :title="chart.title"
-                :label="chart.label"
-                :type="chart.type"
-              />
-              <d-chart v-else :option="chart.option" />
-            </div>
+      <el-row :gutter="20">
+        <el-col :md="{ span: 6}" :span="24">
+          <div class="user-card">
+            <user-card :user="user" />
           </div>
-        </el-card>
-      </div>
+        </el-col>
+        <el-col :md="{ span: 18 }" :span="24">
+          <div class="charts">
+            <el-card>
+              <template #header>
+                <div class="charts-head">
+                  <h3>DCHART 随机图表</h3>
+                  <el-tag type="primary" style="margin-inline: 20px">
+                    <el-button
+                      icon="el-icon-paperclip"
+                      type="text"
+                      size="small"
+                      @click="openDChartGithubAddress"
+                    >组件地址</el-button>
+                  </el-tag>
+                </div>
+              </template>
+              <div v-for="chart in charts" :key="chart.id" class="chart-sample">
+                <div class="chart-panel">
+                  <d-chart
+                    v-if="chart.fastMode"
+                    fastMode
+                    :xData="chart.xData"
+                    :yData="chart.yData"
+                    :title="chart.title"
+                    :label="chart.label"
+                    :type="chart.type"
+                  />
+                  <d-chart v-else :option="chart.option" />
+                </div>
+              </div>
+            </el-card>
+          </div>
+        </el-col>
+      </el-row>
     </div>
   </div>
 </template>
@@ -54,7 +55,7 @@ import SettingCard from "components/SettingCard.vue";
 import UserCard from "components/UserCard.vue";
 export default {
   name: "Me",
-  components: { UserCard, SettingCard},
+  components: { UserCard, SettingCard },
   data() {
     return {
       user: {
@@ -89,25 +90,26 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .root {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 .bottom-panel {
   display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
+  .el-row{
+    width: 100%;
+  }
 }
 .user-card {
-  width: 25%;
-  margin-inline: 10px;
+  width: 100%;
 }
 .charts {
-  width: 75%;
-  margin-inline: 20px;
+  width: 100%;
 }
 .charts-head {
   display: flex;

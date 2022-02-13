@@ -28,7 +28,7 @@ export default {
 .root-commit-item {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 80%;
   height: 100%;
   padding: 10px;
   border-radius: 10px;
@@ -41,6 +41,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   border-right: 5px;
+  
 }
 .detail {
   display: flex;

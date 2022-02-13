@@ -8,27 +8,33 @@
       fixed
     />
     <el-row>
-      <el-col :span="8" :xs="{ span: 20 }">
-        <div class="commit-timeline">
-          <el-timeline>
-            <el-timeline-item
-              v-for="commit in commits"
-              :key="commit.time"
-              :timestamp="commit.time"
-              placement="top"
-              size="large"
-              :type="randomType()"
-              :icon="randomIcon()"
-            >
-              <commit-item
-                :content="commit.content"
-                :time="commit.time"
-                :avatar="commit.avatar"
-                :username="commit.username"
-              />
-            </el-timeline-item>
-          </el-timeline>
-        </div>
+      <el-col :md="{ span: 12 }" :span="24">
+        <el-card>
+          <div slot="header" class="header">
+            <el-tag style="margin-right: 20px;">仓库名</el-tag>
+            <el-input placeholder="repo name" v-model="repoName" />
+          </div>
+          <div class="commit-timeline">
+            <el-timeline>
+              <el-timeline-item
+                v-for="commit in commits"
+                :key="commit.time"
+                :timestamp="commit.time"
+                placement="top"
+                size="large"
+                :type="randomType()"
+                :icon="randomIcon()"
+              >
+                <commit-item
+                  :content="commit.content"
+                  :time="commit.time"
+                  :avatar="commit.avatar"
+                  :username="commit.username"
+                />
+              </el-timeline-item>
+            </el-timeline>
+          </div>
+        </el-card>
       </el-col>
     </el-row>
   </div>
@@ -100,6 +106,15 @@ export default {
   },
 };
 </script>
-<style scoped>
-
+<style scoped lang="scss">
+.commit-timeline {
+  .el-timeline {
+    padding: 10px;
+  }
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>
