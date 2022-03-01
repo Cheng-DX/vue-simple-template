@@ -7,7 +7,7 @@ const catchedRoutesStateItem = {
   },
   mutations: {
     addRoute(state, toRoute) {
-      if (toRoute.meta != undefined && toRoute.meta.notCatche != undefined && toRoute.meta.notCatche) {
+      if (toRoute.meta && toRoute.meta.notCatche) {
         // void
       } else if (toRoute.path === '/') {
         // void

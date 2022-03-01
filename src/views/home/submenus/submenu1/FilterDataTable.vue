@@ -1,11 +1,6 @@
 <template>
   <div class="root-filter-data-table">
-    <el-button
-      @click="visible = true"
-      type="primary"
-      style="margin-bottom: 20px"
-      >OPEN</el-button
-    >
+    <el-button @click="visible = true" type="primary" style="margin-bottom: 20px">OPEN</el-button>
     <el-transfer
       v-model="checkdKeys"
       :data="labelsAndProps"
@@ -212,7 +207,7 @@ export default {
         }
         errorMap[prop][date] = true;
       }
-      this.errorMap = errorMap;   
+      this.errorMap = errorMap;
     });
     this.$axios.get("/getProp2label").then((res) => {
       const data = res.data;
@@ -239,7 +234,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .root-filter-data-table {
   width: 100%;
   height: 100%;

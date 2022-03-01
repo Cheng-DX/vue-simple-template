@@ -1,6 +1,6 @@
 <template>
   <div class="root">
-    <el-carousel :interval="3000" height="200px" class="carousel">
+    <!-- <el-carousel :interval="3000" height="200px" class="carousel">
       <el-carousel-item v-for="img in imgs" :key="img.id">
         <el-image
           style="height: 100%; width: 100%"
@@ -8,7 +8,7 @@
           :src="img.src"
         />
       </el-carousel-item>
-    </el-carousel>
+    </el-carousel> -->
     <div class="bottom-panel">
       <div class="user-card">
         <user-card :user="user" />
@@ -32,6 +32,7 @@
           <div v-for="chart in charts" :key="chart.id" class="chart-sample">
             <div class="chart-panel">
               <d-chart
+                mode="dark"
                 v-if="chart.fastMode"
                 fastMode
                 :xData="chart.xData"

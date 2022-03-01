@@ -14,7 +14,7 @@ $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 $--color-white: #fff !default;
 $--color-black: #000 !default;
 
-$--color-primary: #3e7af3 !default;
+$--color-primary: #5d86d8 !default;
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
 $--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
 $--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
@@ -40,9 +40,9 @@ $--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
 $--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
 $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
 
-$--color-text-primary: #303133 !default;
-$--color-text-regular: #606266 !default;
-$--color-text-secondary: #909399 !default;
+$--color-text-primary: #ffffff !default;
+$--color-text-regular: #dce0eb !default;
+$--color-text-secondary: #d2d5db !default;
 $--color-text-placeholder: #c0c4cc !default;
 
 /* Link
@@ -52,7 +52,7 @@ $--link-hover-color: $--color-primary !default;
 
 /* Background
 -------------------------- */
-$--background-color-base: #f5f7fa !default;
+$--background-color-base: #2f303100 !default;
 
 /* Border
 -------------------------- */
@@ -106,7 +106,7 @@ $--disabled-border-base: $--border-color-light !default;
 
 /* Icon
 -------------------------- */
-$--icon-color: #666 !default;
+$--icon-color: #a59797 !default;
 $--icon-color-base: $--color-info !default;
 
 /* Checkbox
@@ -415,32 +415,32 @@ $--button-mini-padding-vertical: 7px !default;
 $--button-mini-padding-horizontal: 15px !default;
 
 $--button-default-color: $--color-text-regular !default;
-$--button-default-fill: $--color-white !default;
+$--button-default-fill: transparent !default;
 $--button-default-border: $--border-color-base !default;
 
 $--button-disabled-color: $--color-text-placeholder !default;
-$--button-disabled-fill: $--color-white !default;
+$--button-disabled-fill: transparent !default;
 $--button-disabled-border: $--border-color-lighter !default;
 
-$--button-primary-border: $--color-primary !default;
-$--button-primary-color: $--color-white !default;
-$--button-primary-fill: $--color-primary !default;
+$--button-primary-border: transparent !default;
+$--button-primary-color: transparent !default;
+$--button-primary-fill: transparent !default;
 
 $--button-success-border: $--color-success !default;
 $--button-success-color: $--color-white !default;
-$--button-success-fill: $--color-success !default;
+$--button-success-fill: transparent !default;
 
 $--button-warning-border: $--color-warning !default;
 $--button-warning-color: $--color-white !default;
-$--button-warning-fill: $--color-warning !default;
+$--button-warning-fill: transparent !default;
 
 $--button-danger-border: $--color-danger !default;
 $--button-danger-color: $--color-white !default;
-$--button-danger-fill: $--color-danger !default;
+$--button-danger-fill: transparent !default;
 
 $--button-info-border: $--color-info !default;
 $--button-info-color: $--color-white !default;
-$--button-info-fill: $--color-info !default;
+$--button-info-fill: transparent !default;
 
 $--button-hover-tint-percent: 20% !default;
 $--button-active-shade-percent: 10% !default;
@@ -465,7 +465,7 @@ $--switch-button-size: 16px !default;
 
 /* Dialog
 -------------------------- */
-$--dialog-background-color: white !default;
+$--dialog-background-color: rgb(90, 83, 83) !default;
 $--dialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 $--dialog-close-hover-color: $--color-primary !default;
 $--dialog-title-font-size: $--font-size-large !default;
@@ -481,14 +481,14 @@ $--table-text-color: $--color-text-regular !default;
 $--table-header-color: $--color-text-secondary !default;
 $--table-row-hover-background: $--background-color-base !default;
 $--table-current-row-background: $--color-primary-light-9 !default;
-$--table-header-background: $--color-white !default;
-$--table-footer-background: $--color-text-placeholder !default;
+$--table-header-background: $--background-color-base !default;
+$--table-footer-background: $--background-color-base !default;
 $--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
 
 /* Pagination
 -------------------------- */
 $--pagination-font-size: 13px !default;
-$--pagination-fill: $--color-white !default;
+$--pagination-fill: $--background-color-base !default;
 $--pagination-color: $--color-text-primary !default;
 $--pagination-border-radius: 3px !default;
 $--pagination-button-color: $--color-text-primary !default;
