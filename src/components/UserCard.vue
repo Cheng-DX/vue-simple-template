@@ -115,7 +115,7 @@ export default {
 }
 
 .text-muted {
-  color: #777;
+  color: rgb(255, 255, 255);
 }
 .user-name {
   font-weight: bold;
@@ -126,7 +126,7 @@ export default {
 }
 .user-bio {
   margin-top: 10px;
-  color: #606266;
+  color: #ffffff;
 }
 .user-bio-section {
   font-size: 14px;

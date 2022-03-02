@@ -1,9 +1,9 @@
 <template>
   <div class="router_struct">
-    <el-card style="height: 100%; width: 100%">
+    <!-- <el-card style="height: 100%; width: 100%">
       <strong slot="header">{{ test }}</strong>
       <el-tree :data="routes" :props="props" default-expand-all :render-content="renderContent"></el-tree>
-    </el-card>
+    </el-card> -->
   </div>
 </template>
 

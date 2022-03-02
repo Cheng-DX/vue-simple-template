@@ -47,11 +47,23 @@ const permissionStateItem = {
   }
 }
 
+const themeItem = {
+  state: {
+    theme: 'light'
+  },
+  mutations: {
+    setTheme(state, theme) {
+      state.theme = theme
+    }
+  }
+}
+
 const globalDisplayStateArray = [
   switchTypeStateItem,
   breadcrumbVisibleStateItem,
   collapseStateItem,
   permissionStateItem,
+  themeItem
 ]
 
 export default globalDisplayStateArray

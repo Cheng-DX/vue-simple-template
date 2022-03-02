@@ -113,14 +113,14 @@ export default {
   width: 100%;
   height: 100%;
   justify-content: center;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 10px;
   margin: 20px;
   padding: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 2px #c0b8b849;
 }
 .setting-card:hover {
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.3);
   transition: 2s;
 }
 .icon {

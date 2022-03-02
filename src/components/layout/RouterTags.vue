@@ -48,12 +48,14 @@
         style="cursor: pointer"
         :style="{
           marginRight: '10px',
-          marginBottom: '5px'
+          marginBottom: '5px',
+          backgroundColor: routerTagColor,
+          borderColor: routerTagColor,
         }"
       >
         <i :class="isAll ? 'el-icon-caret-top' : 'el-icon-caret-bottom'"></i>
-        {{ isAll ? "关闭" : "展开更多" }}</el-tag
-      >
+        {{ isAll ? "关闭" : "展开更多" }}
+      </el-tag>
     </div>
   </el-collapse-transition>
 </template>
@@ -72,7 +74,7 @@ export default {
     },
   },
   computed: {
-    maxMount(){
+    maxMount() {
       return this.$store.state.maxMount;
     },
     routerTagObj() {
@@ -122,12 +124,12 @@ export default {
   font-size: 13px;
   text-align: center;
   text-decoration: auto;
-  color: #000000;
+  color: #41bdf7;
 }
 .link-tag {
   font-size: 13px;
   text-align: center;
   text-decoration: auto;
-  color: #0b857d8e;
+  color: #83e0da8e;
 }
 </style>

@@ -94,8 +94,8 @@ const allRoutes = [{
           icon: 'el-icon-document'
         }
       },{
-        path: 'test',
-        name: '测试',
+        path: 'component-test',
+        name: '组件测试',
         component: () => import('views/home/submenus/submenu1/Test.vue'),
         meta: {
           icon: 'el-icon-document'

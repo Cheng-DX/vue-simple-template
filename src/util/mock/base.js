@@ -181,3 +181,20 @@ function randomCharts() {
 }
 
 Mock.mock('/api/charts', randomCharts())
+
+Mock.mock(
+  '/api/themeOptions', [
+    {
+      label: '默认亮色',
+      value: 'light'
+    },
+    {
+      label: '默认暗色',
+      value: 'dark'
+    },
+    {
+      label: '透明',
+      value: 'transparent'
+    }
+  ]
+)

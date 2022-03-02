@@ -1,12 +1,7 @@
 <template>
   <div class="root">
     <el-row style="height: 100%" :gutter="35">
-      <el-col
-        :xs="{ span: 21 }"
-        :sm="{ span: 11 }"
-        :md="{ span: 5 }"
-        class="col"
-      >
+      <el-col :xs="{ span: 21 }" :sm="{ span: 11 }" :md="{ span: 5 }" class="col">
         <div style="height: auto">
           <setting-card
             title="显示路由标签"
@@ -22,11 +17,7 @@
             active-color="green"
           />
           <setting-card title="路由标签上限">
-            <el-input
-              v-model="maxMount"
-              oninput="value=value.replace(/[^\d]/g,'')"
-              min="1"
-            />
+            <el-input v-model="maxMount" oninput="value=value.replace(/[^\d]/g,'')" min="1" />
           </setting-card>
           <setting-card
             title="全部关闭时隐藏Tag栏"
@@ -53,12 +44,7 @@
           </setting-card>
         </div>
       </el-col>
-      <el-col
-        :xs="{ span: 21 }"
-        :sm="{ span: 11 }"
-        :md="{ span: 5 }"
-        class="col"
-      >
+      <el-col :xs="{ span: 21 }" :sm="{ span: 11 }" :md="{ span: 5 }" class="col">
         <div style="height: auto">
           <setting-card
             title="页面之间的切换动画"
@@ -75,22 +61,19 @@
           />
         </div>
       </el-col>
-      <el-col
-        :xs="{ span: 21 }"
-        :sm="{ span: 11 }"
-        :md="{ span: 5 }"
-        class="col"
-      >
+      <el-col :xs="{ span: 21 }" :sm="{ span: 11 }" :md="{ span: 5 }" class="col">
         <setting-card title="GitHub用户名">
           <el-input v-model="githubUsername" />
         </setting-card>
       </el-col>
-      <el-col
-        :xs="{ span: 21 }"
-        :sm="{ span: 11 }"
-        :md="{ span: 5 }"
-        class="col"
-      >
+      <el-col :xs="{ span: 21 }" :sm="{ span: 11 }" :md="{ span: 5 }" class="col">
+        <setting-card
+          title="主题"
+          type="selector"
+          :selector-model="theme"
+          :options="themeOptions"
+          :selector-change="commitTheme"
+        />
       </el-col>
     </el-row>
   </div>
@@ -114,6 +97,8 @@ export default {
       breadcrumbVisible: null,
       githubUsername: null,
       maxMount: null,
+      theme: '',
+      themeOptions: []
     };
   },
   created() {
@@ -132,6 +117,10 @@ export default {
     this.breadcrumbVisible = this.$store.state.breadcrumbVisible;
     this.githubUsername = this.$store.state.githubUsername;
     this.maxMount = this.$store.state.maxMount;
+    this.theme = this.$store.state.theme;
+    this.$axios.get("/themeOptions").then((res) => {
+      this.themeOptions = res.data;
+    });
   },
   watch: {
     githubUsername(val) {
@@ -163,6 +152,9 @@ export default {
     changeBreadcrumbVisible(newVal) {
       this.$store.commit("setBreadcrumbVisible", newVal);
     },
+    commitTheme(newVal) {
+      this.$store.commit("setTheme", newVal);
+    },
   },
 };
 </script>
@@ -170,10 +162,11 @@ export default {
 <style scoped>
 .root {
   border-radius: 10px;
-  background: rgba(243, 240, 240, 0.548);
+  background: #f3f0f023;
 }
 .col {
   border-radius: 5px;
   padding-left: 30px;
 }
 </style>
+
