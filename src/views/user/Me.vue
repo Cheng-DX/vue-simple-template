@@ -8,7 +8,7 @@
           :src="img.src"
         />
       </el-carousel-item>
-    </el-carousel> -->
+    </el-carousel>-->
     <div class="bottom-panel">
       <div class="user-card">
         <user-card :user="user" />
@@ -24,15 +24,14 @@
                   type="text"
                   size="small"
                   @click="openDChartGithubAddress"
-                  >组件地址</el-button
-                >
+                >组件地址</el-button>
               </el-tag>
             </div>
           </template>
           <div v-for="chart in charts" :key="chart.id" class="chart-sample">
             <div class="chart-panel">
               <d-chart
-                mode="dark"
+                :mode="chartMode"
                 v-if="chart.fastMode"
                 fastMode
                 :xData="chart.xData"
@@ -41,7 +40,7 @@
                 :label="chart.label"
                 :type="chart.type"
               />
-              <d-chart v-else mode="dark" :option="chart.option" />
+              <d-chart v-else :mode="chartMode" :option="chart.option" />
             </div>
           </div>
         </el-card>
@@ -55,7 +54,7 @@ import SettingCard from "components/SettingCard.vue";
 import UserCard from "components/UserCard.vue";
 export default {
   name: "Me",
-  components: { UserCard, SettingCard},
+  components: { UserCard, SettingCard },
   data() {
     return {
       user: {
@@ -65,10 +64,12 @@ export default {
       imgs: [],
     };
   },
+  computed: {
+    chartMode() {
+      return this.$store.state.theme === 'light' ? 'light' : 'dark';
+    }
+  },
   created() {
-    this.$axios.get("/demo/test1").then((res) => {
-      this.$message.success(res.data);
-    });
     this.$axios.get("/charts").then((res) => {
       this.charts = res.data;
     });
