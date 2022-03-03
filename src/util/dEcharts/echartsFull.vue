@@ -30,25 +30,20 @@ export default {
       type: String,
     },
   },
-  watch: {
-    mode(val) {
-      if (val == "light") {
-        this.dialogClass = "dialogLight";
-      }else if(val == "dark"){
-        this.dialogClass = "dialogDark";
-      }
-    },
+  computed:{
+    dialogClass(){
+      return this.mode == "light" ? "dialogLight" : "dialogDark";
+    }
   },
   data() {
     return {
       dialogVisible: false,
       option: null,
-      dialogClass: "dialogDark",
     };
   },
   created() {
     if (this.mode == "light") {
-      this.dialogClass = "dialogLight";
+      this.dialogClass = "dialogLight"
     }
   },
   methods: {

@@ -27,7 +27,7 @@ export default {
 @import url('../node_modules/element-ui/lib/theme-chalk/index.css');
 $base: #ebdfdf;
 $back: transparent;
-$--color-primary: #ffffff !default;
+$--color-primary: #5d86d8 !default;
 
 .light {
 }
@@ -213,7 +213,7 @@ $--color-primary: #ffffff !default;
 .dark {
   $base: #ebdfdf;
   $back: transparent;
-  background: #1d1a1a;
+  background: #232525;
   background-size: 100vw 100vh;
   p,
   label,

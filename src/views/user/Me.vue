@@ -36,12 +36,12 @@
                 v-if="chart.fastMode"
                 fastMode
                 :xData="chart.xData"
-                :yData="chart.yData"
+                :series="chart.series"
                 :title="chart.title"
                 :label="chart.label"
                 :type="chart.type"
               />
-              <d-chart v-else :option="chart.option" />
+              <d-chart v-else mode="dark" :option="chart.option" />
             </div>
           </div>
         </el-card>

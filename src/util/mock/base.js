@@ -41,43 +41,52 @@ Mock.mock(
   }, {
     label: 'Zoom缩放-bottom',
     value: 'el-zoom-in-bottom'
-  }, ]
+  },]
 )
 
 Mock.mock(
   '/api/routerTagCloseEventList', [{
-      value: 'backToFirst',
-      label: '返回至第一个Tag',
-    },
-    {
-      value: 'backToPrev',
-      label: '返回至上一个Tag',
-    },
-    {
-      value: 'backToHome',
-      label: '返回至首页',
-    },
-    {
-      value: 'none',
-      label: '停留于当前Tag',
-    }
-  ]
+    value: 'backToFirst',
+    label: '返回至第一个Tag',
+  },
+  {
+    value: 'backToPrev',
+    label: '返回至上一个Tag',
+  },
+  {
+    value: 'backToHome',
+    label: '返回至首页',
+  },
+  {
+    value: 'none',
+    label: '停留于当前Tag',
+  }
+]
 )
 
 function randomXData(seed) {
   let data = [];
   for (let i = 0; i < seed; i++) {
-    data.push(i)
+    data.push('X' + (i + 1))
   }
   return data;
 }
 
-function randomYData(seed) {
-  let data = [];
+function randomSeries(seed) {
+  let series = []
   for (let i = 0; i < seed; i++) {
-    data.push(Math.floor(Math.random() * 1000))
+    let data = []
+    for (let i = 0; i < seed; i++) {
+      data.push(Math.floor(Math.random() * 1000))
+    }
+    series.push({
+      name: 'Random Series' + (i + 1),
+      data,
+      type: Math.random() > 0.5 ? 'line' : 'bar',
+      smooth: true
+    })
   }
-  return data;
+  return series;
 }
 
 function randomCharts() {
@@ -94,10 +103,9 @@ function randomCharts() {
       id: '@id',
       fastMode: true,
       xData: randomXData(randomSeeds[i]),
-      yData: randomYData(randomSeeds[i]),
-      title: 'Random Chart' + (i+1),
+      series: randomSeries(randomSeeds[i]),
+      title: 'Random Chart' + (i + 1),
       label: Math.random() > 0.5 ? true : false,
-      type: Math.random() > 0.5 ? 'line' : 'bar',
     })
   }
 
@@ -110,6 +118,7 @@ function randomCharts() {
     data2.push((Math.cos(i / 5) * (i / 5 - 10) + i / 6) * 5);
   }
   let option = {
+    darkMode: true,
     title: {
       text: 'Bar Animation Delay'
     },
@@ -128,7 +137,7 @@ function randomCharts() {
         }
       }
     },
-    grid:{
+    grid: {
       left: '3%',
       right: '4%',
       bottom: '4%',
@@ -143,27 +152,27 @@ function randomCharts() {
     },
     yAxis: {},
     series: [{
-        name: 'bar',
-        type: 'bar',
-        data: data1,
-        emphasis: {
-          focus: 'series'
-        },
-        animationDelay: function (idx) {
-          return idx * 10;
-        }
+      name: 'bar',
+      type: 'bar',
+      data: data1,
+      emphasis: {
+        focus: 'series'
       },
-      {
-        name: 'bar2',
-        type: 'bar',
-        data: data2,
-        emphasis: {
-          focus: 'series'
-        },
-        animationDelay: function (idx) {
-          return idx * 10 + 100;
-        }
+      animationDelay: function (idx) {
+        return idx * 10;
       }
+    },
+    {
+      name: 'bar2',
+      type: 'bar',
+      data: data2,
+      emphasis: {
+        focus: 'series'
+      },
+      animationDelay: function (idx) {
+        return idx * 10 + 100;
+      }
+    }
     ],
     animationEasing: 'elasticOut',
     animationDelayUpdate: function (idx) {
@@ -172,7 +181,7 @@ function randomCharts() {
   };
   for (let i = 0; i < optionChartsLength; i++) {
     charts.push({
-      id :'@id',
+      id: '@id',
       fastMode: false,
       option: option
     })
@@ -184,17 +193,17 @@ Mock.mock('/api/charts', randomCharts())
 
 Mock.mock(
   '/api/themeOptions', [
-    {
-      label: '默认亮色',
-      value: 'light'
-    },
-    {
-      label: '默认暗色',
-      value: 'dark'
-    },
-    {
-      label: '透明',
-      value: 'transparent'
-    }
-  ]
+  {
+    label: '默认亮色',
+    value: 'light'
+  },
+  {
+    label: '默认暗色',
+    value: 'dark'
+  },
+  {
+    label: '透明',
+    value: 'transparent'
+  }
+]
 )

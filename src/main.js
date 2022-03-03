@@ -3,10 +3,9 @@ import App from './App.vue'
 
 // element-ui
 import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-chalk/index.css'
-// import '@/assets/css/customTheme/darkMode.scss'
+
 import 'element-ui/lib/theme-chalk/display.css'
-// import 'element-theme-dark'
+
 Vue.use(ElementUI)
 
 // axios
