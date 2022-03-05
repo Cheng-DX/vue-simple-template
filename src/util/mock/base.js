@@ -83,7 +83,10 @@ function randomSeries(seed) {
       name: 'Random Series' + (i + 1),
       data,
       type: Math.random() > 0.5 ? 'line' : 'bar',
-      smooth: true
+      smooth: true,
+      emphasis: {
+        focus: 'series'
+      },
     })
   }
   return series;
@@ -106,6 +109,7 @@ function randomCharts() {
       series: randomSeries(randomSeeds[i]),
       title: 'Random Chart' + (i + 1),
       label: Math.random() > 0.5 ? true : false,
+      
     })
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="chart">
-    <d-chart :option="option"></d-chart>
+    <d-chart fast-mode mode="dark" :x-data="[1, 2, 3, 4, 5, 6]" :series="series"></d-chart>
   </div>
 </template>
 
@@ -8,58 +8,23 @@
 export default {
   data() {
     return {
-      option: null,
-    }
-  },
-  created() {
-    const data = [
-      [1,2],
-      [2,3],
-      [1,1]
-    ]
-    this.option = {
-      tooltip: {
-        trigger: 'axis'
-      },
-      dataZoom: [
-        {
-          type: 'slider',
-          filterMode: 'none'
-        },
-        {
-          type: 'inside',
-          filterMode: 'none'
-        }
-      ],
-      xAxis: {},
-      yAxis: {},
       series: [
         {
-          type: 'custom',
-          renderItem: function (params, api) {
-            if (params.context.rendered) {
-              return;
-            }
-            params.context.rendered = true;
-            let points = [];
-            for (let i = 0; i < data.length; i++) {
-              points.push(api.coord(data[i]));
-            }
-            return {
-              type: 'polygon',
-              transition: ['shape'],
-              shape: {
-                points: points
-              },
-            };
-          },
-          clip: true,
-          data: data
-        }
-      ]
+          name: "销量",
+          type: "line",
+          data: [5, 20, 36, 10, 10, 20],
+          smooth: true,
+        },
+        {
+          name: "销量2",
+          type: "line",
+          data: [1, 23, 3, 65, 3, 67],
+          symbol: "emptyCircle",
+          symbolSize: 10,
+        },
+      ],
     };
-  }
-
+  },
 };
 </script>
 

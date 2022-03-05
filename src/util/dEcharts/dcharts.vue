@@ -59,8 +59,8 @@ export default {
     },
     // 快速模式下的y轴数据
     series: {
-      type: Array,
-      default: () => [],
+      type: Array | Object,
+      default: () => {},
     },
     // 快速模式下的图表类型，支持line,bar,pie
     type: {
@@ -178,7 +178,7 @@ export default {
           series: this.series,
         }
         for (let item of this.currentOption.series) {
-          if(!item.type){
+          if (!item.type) {
             item.type = this.type;
           }
           this.currentOption.legend.data.push(item.name ? item.name : item)
@@ -193,8 +193,9 @@ export default {
         }
         if (this.currentOption.series) {
           this.currentOption["series"].forEach((item) => {
-            item["symbolSize"] = 1;
-            item["smooth"] = true;
+            if(!item.symbolSize){
+              item.symbolSize = 1;
+            } 
           });
         }
         let imageColor = "#01244b";
