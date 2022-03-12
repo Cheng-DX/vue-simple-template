@@ -121,6 +121,30 @@ const allRoutes = [{
     }]
   },
   {
+    path: '/some',
+    name: 'SOME',
+    component: Layout,
+    redirect: '/some/mine-sweeping',
+    meta: {
+      icon: 'el-icon-s-home',
+    },
+    children:[{
+      path: 'mine-sweeping',
+      name: '扫雷',
+      component: () => import('views/some/MineSweeping.vue'),
+      meta: {
+        icon: 'el-icon-s-home',
+      }
+    },{
+      path: 'tictactoe',
+      name: 'TicTacToe',
+      // component: () => import('views/some/TicTacToe.vue'),
+      meta: {
+        icon: 'el-icon-s-home',
+      }
+    }]
+  },
+  {
     path: '*',
     name: '空',
     meta: {

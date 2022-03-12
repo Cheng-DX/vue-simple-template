@@ -12,12 +12,9 @@ const catchedRoutesStateItem = {
       } else if (toRoute.path === '/') {
         // void
       } else {
-        let hasRoute = false;
-        state.catchedRoutes.forEach(route => {
-          if (route.path === toRoute.path) {
-            hasRoute = true;
-          }
-        })
+        let hasRoute = state.catchedRoutes.some(
+          route => route.path === toRoute.path
+        )
         if (!hasRoute) {
           let item = {
             path: toRoute.path,

@@ -1,13 +1,26 @@
 <template>
   <div class="chart">
+    <el-input v-model="text" />
     <d-chart fast-mode mode="dark" :x-data="[1, 2, 3, 4, 5, 6]" :series="series"></d-chart>
   </div>
 </template>
 
 <script>
 export default {
+  watch: {
+    text: {
+      handler(newVal, oldVal) {
+        this.$message({
+          message: oldVal + '->' + newVal,
+          type: 'success'
+        })
+      },
+      immediate: true
+    }
+  },
   data() {
     return {
+      text: 'text',
       series: [
         {
           name: "销量",
