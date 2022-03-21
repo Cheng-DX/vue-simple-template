@@ -1,5 +1,6 @@
 <template>
   <div class="dashboard-root">
+    <el-rate v-model="rate" @change="change" />
     <Ribbon
       text="STAR ME ON GITHUB🐰"
       url="https://github.com/Cheng-DX/vue-simple-template"
@@ -53,12 +54,22 @@ export default {
       repoName: "vue-simple-template",
       repoInfo: null,
       commits: [],
+      rate: 0,
+      history: [],
+      random: Math.random(),
     };
   },
   methods: {
+    change(newVal) {
+      this.history.push(newVal)
+      if (this.history[this.history.length - 2] === newVal) {
+        this.rate = 0
+        this.history = []
+      }
+    },
     randomType() {
       const types = ["success", "warning", "danger", "primary"];
-      return types[Math.floor(Math.random() * types.length)];
+      return types[Math.floor(this.random * types.length)];
     },
     randomIcon() {
       const icons = ["el-icon-light-rain",
@@ -73,7 +84,7 @@ export default {
         "el-icon-cloudy-and-sunny",
         "el-icon-moon",
         "el-icon-moon-night"]
-      return icons[Math.floor(Math.random() * icons.length)];
+      return icons[Math.floor(this.random * icons.length)];
     }
   },
   created() {
@@ -85,7 +96,6 @@ export default {
     this.$axios
       .get(`https://api.github.com/repos/Cheng-DX/${this.repoName}/commits`)
       .then((res) => {
-        console.log(res.data)
         const data = res.data;
         let commits = []
         for (let item of data) {

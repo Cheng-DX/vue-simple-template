@@ -87,6 +87,7 @@ export default {
   data() {
     return {
       currentOption: null,
+      test: 'text'
     };
   },
   mounted() {

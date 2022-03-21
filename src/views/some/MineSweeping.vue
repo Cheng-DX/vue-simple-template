@@ -208,9 +208,6 @@ export default {
 .item-hidden {
   background: #fff;
 }
-.item:hover {
-  // background: #fff;
-}
 .button-group {
   margin-top: 30px;
 }
